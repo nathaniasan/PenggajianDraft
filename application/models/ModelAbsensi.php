@@ -1,32 +1,37 @@
 <?php
 class ModelAbsensi extends CI_Model
 {
-	public function get_data($table)
+
+	// Constructor and other methods as before
+
+	public function getAlldata_kehadiran()
 	{
-		return $this->db->get($table);
+		$query = $this->db->get('data_kehadiran');
+		return $query->result();
 	}
 
-	public function insert_data($data, $table)
+	public function getAbsenById($id)
 	{
-		$this->db->insert($table, $data);
+		$query = $this->db->get_where('data_kehadiran', array('id_kehadiran' => $id));
+		return $query->row();
 	}
 
-	public function update_data($table, $data, $whare)
+	public function addAbsen($data)
 	{
-		$this->db->update($table, $data, $whare);
+		return $this->db->insert('data_kehadiran', $data);
 	}
 
-	public function delete_data($whare, $table)
+	public function updateAbsen($id, $data)
 	{
-		$this->db->where($whare);
-		$this->db->delete($table);
+		$this->db->where('id_kehadiran', $id);
+		return $this->db->update('data_kehadiran', $data);
 	}
 
-	public function insert_batch($table = null, $data = array())
+	public function deleteAbsen($id)
 	{
-		$jumlah = count($data);
-		if ($jumlah > 0) {
-			$this->db->insert_batch($table, $data);
-		}
+		$this->db->where('id_kehadiran', $id);
+		return $this->db->delete('data_kehadiran');
 	}
 }
+
+

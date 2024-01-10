@@ -72,7 +72,9 @@
 		</span>
 	</div>
 	<form method="POST">
-		<button class="btn btn-success mb-3" type="submit" name="submit" value="submit">Simpan</button>
+
+		<button class="btn btn-success mb-3" type="submit" name="update_absen" value="update_absen">Simpan
+			Perubahan</button>
 		<table class="table table-bordered table-striped">
 			<tr>
 				<td class="text-center">No</td>

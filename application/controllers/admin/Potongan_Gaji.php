@@ -67,7 +67,7 @@ class Potongan_Gaji extends CI_Controller
 		// Set flashdata to show a success message
 		// $this->session->set_flashdata('success', 'Data has been successfully inserted.');
 
-		redirect('admin/potongan_gaji');
+		redirect('admin/potongan_gaji/tampilPotongan');
 	}
 
 	function editPotongan()

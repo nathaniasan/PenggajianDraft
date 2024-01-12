@@ -2,7 +2,7 @@
 <footer class="sticky-footer">
 	<div class="container my-auto">
 		<div class="copyright text-center my-auto">
-			<span>Copyright &copy; Abid Taufiqur Rohman | Penggajian 2022</span>
+			<span>Copyright &copy; Kelompok PKL YP | Penggajian 2022</span>
 		</div>
 	</div>
 </footer>
@@ -26,33 +26,9 @@
 <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
 <link href="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-<!-- Script -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- jQuery UI -->
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- get honor value -->
-<!-- <script type="text/javascript">
-	$(document).ready(function () {
-		$('#tanggal_masuk').on('blur', async function () {
-			var tanggal_masuk = $(this).val();
 
-			$.ajax({
-				url: '<?php echo base_url('admin/data_pegawai/getHonor') ?>',
-				type: 'POST',
-				data: { 'tanggal_masuk': tanggal_masuk },
-				dataType: 'json',
-				success: function (response) {
-					console.log(response); // Check AJAX response in the console
-					$('#honor').val(response.honor);
-				},
-				error: function (xhr, status, error) {
-					console.error(xhr.responseText); // Log any AJAX errors
-				}
-			});
-		});
-	});
-</script> -->
+
+
 <script type="text/javascript">
 	document.getElementById('tanggal_masuk').addEventListener('change', async function () {
 		let tanggalMasuk = new Date(this.value);
@@ -72,6 +48,8 @@
 		}
 	});
 </script>
+
+
 <script type="text/javascript">
 	// Pie Chart Example
 	var ctx = document.getElementById("myPieChart");

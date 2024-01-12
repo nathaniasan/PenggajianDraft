@@ -7,21 +7,22 @@
 		<label for="email">Jumlah</label>
 		<input type="text" class="form-control" name="jml_potongan" placeholder="Masukan Jumlah Potongan">
 	</div>
-	<button id="tombol_tambah" type="button" class="btn btn-primary" data-dismiss="modal">Tambah</button>
+	<button id="tombol_tambah" type="button" class="btn btn-primary" data-dismiss="modal"
+		data-redirect="<?php echo base_url(); ?>admin/potongan_gaji/tampilPotongan">Tambah</button>
+
 </form>
 <script type="text/javascript">
-	$(document).ready(function () {
-		$("#tombol_tambah").click(function () {
-			var data = $('#form').serialize();
-			$.ajax({
-				type: 'POST',
-				url: "<?php echo base_url(); ?>admin/potongan_gaji/simpanPotongan",
-				data: data,
-				cache: false,
-				success: function (data) {
-					$('#tampil').load("<?php echo base_url(); ?>admin/potongan_gaji/tampilPotongan");
-				}
-			});
+	$("#tombol_tambah").click(function () {
+		var data = $('#form').serialize();
+		$.ajax({
+			type: 'POST',
+			url: "<?php echo base_url(); ?>admin/potongan_gaji/simpanPotongan",
+			data: data,
+			cache: false,
+			success: function (data) {
+				window.location.href = "<?php echo base_url(); ?>admin/potongan_gaji/";
+			}
 		});
 	});
+
 </script>

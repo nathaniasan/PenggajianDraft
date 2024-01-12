@@ -121,6 +121,13 @@ if ($jml_data > 0) { ?>
 							?>
 							<?php endforeach; ?>
 							<?php $no = 1;
+							// var_dump($gaji);
+							echo PHP_EOL;
+							echo PHP_EOL . `<br><br><br><br>`;
+
+							// var_dump($potongan);
+						
+							// die();
 							foreach ($gaji as $g): ?>
 								<?php $potongan = $g->alpha * $alpha
 									?>

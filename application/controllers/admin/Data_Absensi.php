@@ -169,7 +169,7 @@ class Data_Absensi extends CI_Controller
 		// var_dump($deleteAbsen);
 		// die();
 
-		if ($delete) {
+		if ($deleteAbsen) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong>Data berhasil dihapus!</strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">

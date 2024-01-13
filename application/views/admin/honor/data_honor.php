@@ -39,7 +39,7 @@
 									<?php echo $h->nama_pegawai ?>
 								</td>
 								<td class="text-center">
-									<?php echo $h->nama_jabatan ?>
+									<?php echo $h->jabatan ?>
 								</td>
 								<td class="text-center">
 									<?php echo $h->jam_honor ?>
@@ -49,10 +49,10 @@
 								</td>
 								<td class="text-center">
 									<a class="btn btn-sm btn-info"
-										href="<?php echo base_url('admin/honor/update_data/' . $h->id_pegawai) ?>"><i
+										href="<?php echo base_url('admin/honor/update_data/' . $h->id_honor) ?>"><i
 											class="fas fa-edit"></i></a>
 									<a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger"
-										href="<?php echo base_url('admin/data_pegawai/delete_data/' . $h->id_pegawai) ?>"><i
+										href="<?php echo base_url('admin/honor/delete_data/' . $h->id_honor) ?>"><i
 											class="fas fa-trash"></i></a>
 								</td>
 							</tr>

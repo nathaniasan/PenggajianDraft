@@ -3,7 +3,7 @@ class Honor extends CI_Controller
 {
 	public $modelHonor;
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 		$this->load->model('ModelHonor'); // Load the model properly
@@ -18,15 +18,23 @@ class Honor extends CI_Controller
 		}
 	}
 
-	function index()
+	public function index()
 	{
 		$data['title'] = "Daftar Honorer Staff dan Guru";
 		// $data['honor'] = $this->ModelHonor->getAllHonor();
 		// $data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
-		$data['honorer'] = $this->db->query("SELECT data_pegawai.nik,data_pegawai.nama_pegawai,data_jabatan.nama_jabatan,tbl_honor.id_honor,tbl_honor.jam_honor,tbl_honor.jmlh_honor,tbl_honor.id_pegawai FROM data_pegawai
-		INNER JOIN tbl_honor ON tbl_honor.id_pegawai=data_pegawai.id_pegawai
-		INNER JOIN data_jabatan ON data_jabatan.nama_jabatan=data_pegawai.jabatan
-		ORDER BY data_pegawai.nama_pegawai ASC")->result();
+		$data['honorer'] = $this->db->query("SELECT 
+		data_pegawai.nik,
+		data_pegawai.nama_pegawai,
+		data_pegawai.jabatan,
+		tbl_honor.id_honor,
+		tbl_honor.jam_honor,
+		tbl_honor.jmlh_honor,
+		tbl_honor.id_pegawai
+	FROM 
+		data_pegawai
+	INNER JOIN 
+		tbl_honor ON tbl_honor.id_pegawai = data_pegawai.id_pegawai;")->result();
 		// var_dump($data['honorer']);
 		// die();
 
@@ -37,12 +45,12 @@ class Honor extends CI_Controller
 	}
 
 
-	function tambah_honor()
+	public function tambah_honor()
 	{
 		$data['title'] = "Tambah Honorer";
 		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
-		var_dump($data['fetch_pegawai']);
-		die();
+		// var_dump($data['fetch_pegawai']);
+		// die();
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');
 		$this->load->view('admin/honor/tambah_honor', $data);
@@ -54,72 +62,92 @@ class Honor extends CI_Controller
 		$this->_rules();
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->tambah_data();
+			$this->tambah_honor();
 		} else {
-			$nama_jabatan = $this->input->post('nama_jabatan');
-			$tj_struktural = $this->input->post('tj_struktural');
-			$tj_transport = $this->input->post('tj_transport');
-			$uang_makan = $this->input->post('uang_makan');
+			$jam_honor = $this->input->post('jam_honor');
+			$jmlh_honor = $this->input->post('jmlh_honor');
+			$id_pegawai = $this->input->post('id_pegawai');
+
 
 			$data = array(
-				'nama_jabatan' => $nama_jabatan,
-				'tj_struktural' => $tj_struktural,
-				'tj_transport' => $tj_transport,
-				'uang_makan' => $uang_makan,
+				'jam_honor' => $jam_honor,
+				'jmlh_honor' => $jmlh_honor,
+				'id_pegawai' => $id_pegawai,
+
 			);
 
-			$this->ModelPenggajian->insert_data($data, 'data_jabatan');
+			$this->ModelHonor->addHonor($data);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong>Data berhasil ditambahkan!</strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 				</div>');
-			redirect('admin/data_jabatan');
+			redirect('admin/honor');
 		}
 	}
-	function edit_honor()
+	public function _rules()
 	{
-		$potongan = $this->input->post('potongan');
-		$data['hasil'] = $this->modelPotongan_Gaji->Getpotongan($potongan);
-		$this->load->view('admin/potongan_gaji/edit_honor', $data);
-	}
-	function hapus_honor()
-	{
-		$honor = $this->input->post('hon');
-		$data['hasil'] = $this->modelPotongan_Gaji->Getpotongan($potongan);
-		$this->load->view('admin/potongan_gaji/hapus_honor', $data);
+		$this->form_validation->set_rules('jam_honor', 'Jam Honor', 'required|numeric');
+		$this->form_validation->set_rules('jmlh_honor', 'Jumlah Honor', 'required|numeric');
 	}
 
-	function simpanPotongan()
+
+	public function update_data($id)
 	{
-		$data = array(
-			'potongan' => $this->input->post('potongan'),
-			'jml_potongan' => $this->input->post('jml_potongan')
-		);
-		$this->db->insert('potongan_gaji', $data);
+		$data['title'] = "Update data honor";
+		$data['honor'] = $this->ModelHonor->getHonorById($id);
+		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
+		// var_dump($data['$fetch_pegawai']);
+		// die();
+		$this->load->view('template_admin/header', $data);
+		$this->load->view('template_admin/sidebar');
+		$this->load->view('admin/honor/update_honor', $data);
+		$this->load->view('template_admin/footer');
 
-		// Set flashdata to show a success message
-		// $this->session->set_flashdata('success', 'Data has been successfully inserted.');
-
-		redirect('admin/potongan_gaji/tampilPotongan');
 	}
 
-	function editPotongan()
+	public function update_honor_aksi()
 	{
-		$data = array(
-			'potongan' => $this->input->post('potongan_baru'),
-			'jml_potongan' => $this->input->post('jml_potongan')
-		);
-		$potongan = $this->input->post('potongan_lama');
-		$this->db->where('potongan', $potongan);
-		$this->db->update('potongan_gaji', $data);
-	}
-	function hapusPotongan()
-	{
-		$potongan = $this->input->post('potongan');
+		$this->_rules();
+		if ($this->form_validation->run() == FALSE) {
+			$this->update_data();
+		} else {
+			$id_honor = $this->input->post('id_honor');
+			$jam_honor = $this->input->post('jam_honor');
+			$jmlh_honor = $this->input->post('jmlh_honor');
+			$id_pegawai = $this->input->post('id_pegawai');
 
-		$this->db->delete('potongan_gaji', array('potongan' => $potongan));
+
+			$data = array(
+				'jam_honor' => $jam_honor,
+				'jmlh_honor' => $jmlh_honor,
+				'id_pegawai' => $id_pegawai,
+
+			);
+
+			$this->ModelHonor->updateHonor($id_honor, $data);
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>Data berhasil diupdate!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+			redirect('admin/honor');
+		}
+
+	}
+	public function delete_data($id)
+	{
+		$this->ModelHonor->deleteHonor($id);
+		$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>Data berhasil dihapus!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+		redirect('admin/honor');
+
 	}
 }
 ?>

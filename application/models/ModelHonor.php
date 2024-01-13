@@ -15,18 +15,18 @@ class ModelHonor extends CI_Model
 		return $query->row();
 	}
 
-	public function addAbsen($data)
+	public function addHonor($data)
 	{
 		return $this->db->insert('tbl_honor', $data);
 	}
 
-	public function updateAbsen($id, $data)
+	public function updateHonor($id, $data)
 	{
 		$this->db->where('id_honor', $id);
 		return $this->db->update('tbl_honor', $data);
 	}
 
-	public function deleteAbsen($id)
+	public function deleteHonor($id)
 	{
 		$this->db->where('id_honor', $id);
 		return $this->db->delete('tbl_honor');

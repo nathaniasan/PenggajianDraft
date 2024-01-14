@@ -126,8 +126,8 @@
 				</td>
 
 				<td width="200px">
-					<p>Yogyakarta,
-						<?php echo date("d M Y") ?> <br> Finance,
+					<p>Bandar Lampung,
+						<?php echo date("d M Y") ?> <br> Bendahara,
 					</p>
 					<br>
 					<br>

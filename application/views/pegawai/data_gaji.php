@@ -30,7 +30,7 @@
 					<?php echo $g->bulan ?>
 				</td>
 				<td>Rp.
-					<?php echo number_format($g->gaji_pokok, 0, ',', '.') ?>
+					<?php echo number_format($g->tj_struktural, 0, ',', '.') ?>
 				</td>
 				<td>Rp.
 					<?php echo number_format($g->tj_transport, 0, ',', '.') ?>
@@ -42,7 +42,7 @@
 					<?php echo number_format($pot_gaji, 0, ',', '.') ?>
 				</td>
 				<td>Rp.
-					<?php echo number_format($g->gaji_pokok + $g->tj_transport + $g->uang_makan - $pot_gaji, 0, ',', '.') ?>
+					<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan - $pot_gaji, 0, ',', '.') ?>
 				</td>
 				<td>
 					<center>

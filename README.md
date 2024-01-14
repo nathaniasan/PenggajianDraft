@@ -1,4 +1,4 @@
-Website Penggajian Karyawan Menggunakan Codeigniter 3
+Website Penggajian Guru dan Staff YP Unila Menggunakan Codeigniter 3
 
 Fitur Admin
 
@@ -16,3 +16,4 @@ Fitur Admin
 Fitur Karyawan
 
 1. Cetak Slip Gaji
+1. Cetak Laporan Bulanan

@@ -23,18 +23,10 @@ class Honor extends CI_Controller
 		$data['title'] = "Daftar Honorer Staff dan Guru";
 		// $data['honor'] = $this->ModelHonor->getAllHonor();
 		// $data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
-		$data['honorer'] = $this->db->query("SELECT 
-		data_pegawai.nik,
-		data_pegawai.nama_pegawai,
-		data_pegawai.jabatan,
-		tbl_honor.id_honor,
-		tbl_honor.jam_honor,
-		tbl_honor.jmlh_honor,
-		tbl_honor.id_pegawai
-	FROM 
-		data_pegawai
-	INNER JOIN 
-		tbl_honor ON tbl_honor.id_pegawai = data_pegawai.id_pegawai;")->result();
+		$data['honorer'] = $this->db->query("SELECT tbl_honor.id_honor,
+		tbl_honor.jam_honor,tbl_honor.jmlh_honor,tbl_honor.id_jabatan, data_jabatan.nama_jabatan
+		from
+		tbl_honor INNER join data_jabatan on tbl_honor.id_jabatan=data_jabatan.id_jabatan;")->result();
 		// var_dump($data['honorer']);
 		// die();
 
@@ -48,7 +40,7 @@ class Honor extends CI_Controller
 	public function tambah_honor()
 	{
 		$data['title'] = "Tambah Honorer";
-		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
+		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_jabatan')->result();
 		// var_dump($data['fetch_pegawai']);
 		// die();
 		$this->load->view('template_admin/header', $data);
@@ -66,14 +58,13 @@ class Honor extends CI_Controller
 		} else {
 			$jam_honor = $this->input->post('jam_honor');
 			$jmlh_honor = $this->input->post('jmlh_honor');
-			$id_pegawai = $this->input->post('id_pegawai');
+			$id_jabatan = $this->input->post('id_jabatan');
 
 
 			$data = array(
 				'jam_honor' => $jam_honor,
 				'jmlh_honor' => $jmlh_honor,
-				'id_pegawai' => $id_pegawai,
-
+				'id_jabatan' => $id_jabatan,
 			);
 
 			$this->ModelHonor->addHonor($data);
@@ -97,7 +88,7 @@ class Honor extends CI_Controller
 	{
 		$data['title'] = "Update data honor";
 		$data['honor'] = $this->ModelHonor->getHonorById($id);
-		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
+		$data['fetch_pegawai'] = $this->ModelPenggajian->get_data('data_jabatan')->result();
 		// var_dump($data['$fetch_pegawai']);
 		// die();
 		$this->load->view('template_admin/header', $data);
@@ -116,15 +107,15 @@ class Honor extends CI_Controller
 			$id_honor = $this->input->post('id_honor');
 			$jam_honor = $this->input->post('jam_honor');
 			$jmlh_honor = $this->input->post('jmlh_honor');
-			$id_pegawai = $this->input->post('id_pegawai');
+			$id_jabatan = $this->input->post('id_jabatan');
 
 
 			$data = array(
 				'jam_honor' => $jam_honor,
 				'jmlh_honor' => $jmlh_honor,
-				'id_pegawai' => $id_pegawai,
-
+				'id_jabatan' => $id_jabatan,
 			);
+
 
 			$this->ModelHonor->updateHonor($id_honor, $data);
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">

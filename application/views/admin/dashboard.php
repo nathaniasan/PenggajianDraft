@@ -143,14 +143,14 @@
 				<!-- Card Body -->
 				<div class="card-body">
 					<div class="chart-pie pt-4 pb-2">
-						<canvas id="myPieChart"></canvas>
+						<canvas id="myPieChart2"></canvas>
 					</div>
 					<div class="mt-4 text-center small">
 						<span class="mr-2">
-							<i class="fas fa-circle text-primary"></i> Karyawan Tetap
+							<i class="fas fa-circle text-primary"></i> Staff
 						</span>
 						<span class="mr-2">
-							<i class="fas fa-circle text-success"></i> Karyawan Iidak Tetap
+							<i class="fas fa-circle text-success"></i> Guru
 						</span>
 					</div>
 				</div>

@@ -29,22 +29,22 @@ class Data_Pegawai extends CI_Controller
 		$this->load->view('template_admin/footer');
 	}
 	//calculate honor
-	public function getHonor()
-	{
-		$tanggal_masuk = $this->input->post('tanggal_masuk');
-		$now = new DateTime();
-		$tanggal_masuk_obj = new DateTime($tanggal_masuk);
-		$interval = $now->diff($tanggal_masuk_obj);
-		$years = $interval->y;
+	// public function getHonor()
+	// {
+	// 	$tanggal_masuk = $this->input->post('tanggal_masuk');
+	// 	$now = new DateTime();
+	// 	$tanggal_masuk_obj = new DateTime($tanggal_masuk);
+	// 	$interval = $now->diff($tanggal_masuk_obj);
+	// 	$years = $interval->y;
 
-		if ($years >= 5) {
-			$honor = 100000;
-		} else {
-			$honor = 50000;
-		}
-		return json_encode(['honor' => $honor]);
+	// 	if ($years >= 5) {
+	// 		$honor = 100000;
+	// 	} else {
+	// 		$honor = 50000;
+	// 	}
+	// 	return json_encode(['honor' => $honor]);
 
-	}
+	// }
 
 	public function tambah_data()
 	{

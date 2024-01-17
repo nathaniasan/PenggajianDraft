@@ -17,11 +17,11 @@
 					<thead class="thead-dark">
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-center">NIK</th>
-							<th class="text-center">Nama Pegawai</th>
-							<th class="text-center">Jabatan</th>
+							<!-- <th class="text-center">NIK</th>
+							<th class="text-center">Nama Pegawai</th> -->
 							<th class="text-center">Jam Honor</th>
 							<th class="text-center">Jumlah Honor</th>
+							<th class="text-center">Jabatan</th>
 							<th class="text-center">Actions</th>
 						</tr>
 					</thead>
@@ -32,21 +32,22 @@
 								<td class="text-center">
 									<?php echo $no++ ?>
 								</td>
-								<td class="text-center">
+								<!-- <td class="text-center">
 									<?php echo $h->nik ?>
 								</td>
 								<td class="text-center">
 									<?php echo $h->nama_pegawai ?>
-								</td>
-								<td class="text-center">
-									<?php echo $h->jabatan ?>
-								</td>
+								</td> -->
 								<td class="text-center">
 									<?php echo $h->jam_honor ?>
 								</td>
 								<td class="text-center">
 									<?php echo $h->jmlh_honor ?>
 								</td>
+								<td class="text-center">
+									<?php echo $h->nama_jabatan ?>
+								</td>
+
 								<td class="text-center">
 									<a class="btn btn-sm btn-info"
 										href="<?php echo base_url('admin/honor/update_data/' . $h->id_honor) ?>"><i

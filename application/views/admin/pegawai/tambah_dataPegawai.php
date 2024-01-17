@@ -69,20 +69,21 @@
 			</div>
 
 			<div class="form-group">
-				<label for="honor">Honor/Jam:</label>
-				<input type="text" id="honor" name="honor" class="form-control" readonly>
-				<?php echo form_error('honor', '<div class="text-small text-danger"> </div>') ?>
-			</div>
-
-			<div class="form-group">
 				<label>Status</label>
-				<select name="status" class="form-control">
+				<select id="status" name="status" class="form-control">
 					<option value="">--Pilih Status--</option>
 					<option value="Guru">Guru</option>
 					<option value="Staff">Staff</option>
 				</select>
 				<?php echo form_error('status', '<div class="text-small text-danger"> </div>') ?>
 			</div>
+
+			<div class="form-group">
+				<label for="honor">Honor/Jam:</label>
+				<input type="text" id="honor" name="honor" class="form-control">
+				<?php echo form_error('honor', '<div class="text-small text-danger"> </div>') ?>
+			</div>
+
 
 			<div class="form-group">
 				<label>Hak Akses</label>

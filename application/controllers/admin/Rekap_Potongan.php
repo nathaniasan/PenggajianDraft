@@ -1,0 +1,23 @@
+<?php
+class Potongan_Gaji extends CI_Controller
+{
+	public $modelRekap;
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('ModelRekap'); // Load the model properly
+		$this->modelRekap = new ModelPotongan_Gaji(); // Create an instance if necessary (check if it's needed)
+
+
+		if ($this->session->userdata('hak_akses') != '1') {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Anda Belum Login!</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+			redirect('login');
+		}
+	}
+}

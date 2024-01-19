@@ -91,7 +91,7 @@
 
 			<tr>
 				<td>3</td>
-				<td>Uang Makan</td>
+				<td>Tj. Staff</td>
 				<td>Rp.
 					<?php echo number_format($ps->uang_makan, 0, ',', '.') ?>
 				</td>

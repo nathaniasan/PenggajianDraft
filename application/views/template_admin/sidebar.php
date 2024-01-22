@@ -32,6 +32,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="<?php echo base_url('admin/data_pegawai') ?>">Data Pegawai</a>
 						<a class="collapse-item" href="<?php echo base_url('admin/data_jabatan') ?>">Data Jabatan</a>
+						<a class="collapse-item" href="<?php echo base_url('admin/data_tugastambahan') ?>">Data Tugas Tambahan</a>
 					</div>
 				</div>
 			</li>

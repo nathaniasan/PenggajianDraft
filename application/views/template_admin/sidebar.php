@@ -35,6 +35,8 @@
 						<a class="collapse-item" href="#">Data Tugas
 							Pegawai</a>
 						<a class="collapse-item" href="<?php echo base_url('admin/honor') ?>">Data Honor </a>
+						<a class="collapse-item" href="<?php echo base_url('admin/rekap_potongan') ?>">Rekap Potongan
+							Gaji</a>
 					</div>
 				</div>
 			</li>

@@ -68,8 +68,8 @@ GROUP BY
     dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai;
 ")->result();
 		// var_dump($bulantahun);
-		// var_dump($data['gaji']);
-		// die();
+		var_dump($data['gaji']);
+		die();
 
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');

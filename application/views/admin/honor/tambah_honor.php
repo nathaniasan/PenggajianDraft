@@ -31,10 +31,10 @@
 			<div class="form-group">
 				<label>Nama Pegawai</label>
 				<select name="id_jabatan" class="form-control">
-					<option value="">--Pilih Pegawai--</option>
+					<option value="">--Pilih Jabatan Pegawai--</option>
 					<?php foreach ($fetch_pegawai as $pegawai): ?>
 						<option value="<?php echo $pegawai->id_jabatan ?>">
-							<?php echo $pegawai->id_jabatan . " " . $pegawai->nama_jabatan ?>
+							<?php echo $pegawai->id_jabatan . ". " . $pegawai->nama_jabatan ?>
 						</option>
 					<?php endforeach; ?>
 				</select>

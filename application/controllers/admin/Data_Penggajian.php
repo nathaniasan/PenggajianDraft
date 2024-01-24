@@ -36,6 +36,7 @@ class Data_Penggajian extends CI_Controller
     dp.nik,
     dp.nama_pegawai,
     dp.jenis_kelamin,
+	dp.honor,
     dj.nama_jabatan,
     dj.tj_struktural,
     dj.insentif_mgmp,

@@ -132,7 +132,7 @@ if ($jml_data > 0) { ?>
 						
 							// die();
 							foreach ($gaji as $g): ?>
-								<?php $potongan = $g->hadir * $hadir
+								<?php $total_honorer = $g->honor * $g->hadir
 									?>
 								<tr>
 									<td class="text-center">
@@ -166,7 +166,7 @@ if ($jml_data > 0) { ?>
 										<?php echo number_format($g->tunjangan_yayasan, 0, ',', '.') ?>
 									</td>
 									<td class="text-center">Rp.
-										<?php echo number_format($g->tunjangan_yayasan, 0, ',', '.') ?>
+										<?php echo number_format($total_honorer, 0, ',', '.') ?>
 									</td>
 									<td class="text-center">Rp.
 										<?php echo number_format(

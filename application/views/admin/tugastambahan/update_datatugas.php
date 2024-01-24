@@ -15,7 +15,7 @@
 	<div class="card-body">
 
 		<?php foreach ($tugastambahan as $p): ?>
-			<form method="POST" action="<?php echo base_url('admin/data_tugas/update_data_aksi') ?>"
+			<form method="POST" action="<?php echo base_url('admin/data_tugastambahan/update_data_aksi') ?>"
 				enctype="multipart/form-data">
 
 				<div class="form-group">
@@ -39,12 +39,12 @@
 
 				<div class="form-group">
 					<label>Id Jabatan</label>
-					<input type="id_jabatan" name="id_jabatan" class="form-control" value="<?php echo md5($p->id_jabatan) ?>">
+					<input type="text" name="id_jabatan" class="form-control" value="<?php echo $p->id_jabatan ?>">
 					<?php echo form_error('id_jabatan', '<div class="text-small text-danger"> </div>') ?>
 				</div>
 
 				<button type="submit" class="btn btn-success">Simpan</button>
-				<a href="<?php echo base_url('admin/data_tugas') ?>" class="btn btn-warning">Kembali</a>
+				<a href="<?php echo base_url('admin/data_tugastambahan') ?>" class="btn btn-warning">Kembali</a>
 
 			</form>
 		<?php endforeach; ?>

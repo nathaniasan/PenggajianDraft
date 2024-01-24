@@ -26,6 +26,9 @@ class ModelTugas_Tambahan extends CI_Model
 		$this->db->where('id_tugas', $id);
 		return $this->db->update('tugas_tambahan', $data);
 	}
+	public function update_data($table, $data, $whare){
+		$this->db->update($table, $data, $whare);
+	}
 
 	public function deleteTugas($id)
 	{

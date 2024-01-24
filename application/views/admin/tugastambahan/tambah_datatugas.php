@@ -13,7 +13,7 @@
 
 <div class="card" style="width: 60% ; margin-bottom: 100px">
 	<div class="card-body">
-		<form method="POST" action="<?php echo base_url('admin/data_tugas/tambah_data_aksi') ?>"
+		<form method="POST" action="<?php echo base_url('admin/data_tugastambahan/tambah_data_aksi') ?>"
 			enctype="multipart/form-data">
 
 			<div class="form-group">
@@ -36,13 +36,13 @@
 
 			<div class="form-group">
 				<label>Id Jabatan</label>
-				<input type="id_jabatan" name="id_jabatan" class="form-control">
+				<input type="text" name="id_jabatan" class="form-control">
 				<?php echo form_error('id_jabatan', '<div class="text-small text-danger"> </div>') ?>
 			</div>
 
 			<button type="submit" class="btn btn-success">Simpan</button>
 			<button type="reset" class="btn btn-danger">Reset</button>
-			<a href="<?php echo base_url('admin/data_tugas') ?>" class="btn btn-warning">Kembali</a>
+			<a href="<?php echo base_url('admin/data_tugastambahan') ?>" class="btn btn-warning">Kembali</a>
 
 		</form>
 	</div>

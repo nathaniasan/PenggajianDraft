@@ -121,7 +121,8 @@ class Data_Pegawai extends CI_Controller
 		$data['title'] = "update Data Pegawai";
 		$data['jabatan'] = $this->ModelPenggajian->get_data('data_jabatan')->result();
 		$data['pegawai'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_pegawai='$id'")->result();
-
+		// var_dump($data['pegawai']);
+		// die();
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');
 		$this->load->view('admin/pegawai/update_dataPegawai', $data);
@@ -130,7 +131,9 @@ class Data_Pegawai extends CI_Controller
 
 	public function update_data_aksi()
 	{
-
+		// var_dump($id = $this->input->post('id_pegawai'));
+		// die();
+		$this->_rules();
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->update_data();

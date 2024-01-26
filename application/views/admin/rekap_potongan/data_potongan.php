@@ -19,7 +19,11 @@
 
 	<div class="card shadow mb-4">
 		<div class="card-body">
+			<a class="btn btn-sm btn-success mb-3" href="<?php echo base_url('admin/rekap_potongan/tambah_data') ?>"><i
+					class="fas fa-plus"></i> Tambah
+				Rekap Potongan Gaji</a>
 			<div class="table-responsive">
+
 				<table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
 					<thead class="thead-dark">
 						<tr>

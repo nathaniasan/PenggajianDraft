@@ -13,40 +13,33 @@
 
 <div class="card" style="width: 60% ; margin-bottom: 100px">
 	<div class="card-body">
+		<form method="POST" action="<?php echo base_url('admin/data_tugastambahan/update_data_aksi') ?>"
+			enctype="multipart/form-data">
+			<input type="hidden" name="id_tugas" value="<?php echo $tugas->id_tugas ?>" class="form-control">
 
-		<?php foreach ($tugastambahan as $p): ?>
-			<form method="POST" action="<?php echo base_url('admin/data_tugas/update_data_aksi') ?>"
-				enctype="multipart/form-data">
+			<div class="form-group">
+				<label>Nama Tugas</label>
+				<input type="text" name="nama_tugas" value="<?php echo $tugas->nama_tugas ?> " class="form-control">
+				<?php echo form_error('nama_tugas', '<div class="text-small text-danger"> </div>') ?>
+			</div>
 
-				<div class="form-group">
-					<label>Id Tugas</label>
-					<input type="hidden" name="id_tugas" class="form-control" value="<?php echo $p->id_tugas ?>">
-					<input type="number" name="id_tugas" class="form-control" value="<?php echo $p->id_tugas ?>">
-					<?php echo form_error('id_tugas', '<div class="text-small text-danger"> </div>') ?>
-				</div>
+			<div class="form-group">
+				<label>Nama Pegawai</label>
+				<select name="id_pegawai" class="form-control">
+					<option value="">--Pilih Pegawai--</option>
+					<?php foreach ($pegawai as $p): ?>
+						<option value="<?php echo $p->id_pegawai ?>">
+							<?php echo $p->nama_pegawai ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
 
-				<div class="form-group">
-					<label>Nama Tugas</label>
-					<input type="text" name="nama_tugas" class="form-control" value="<?php echo $p->nama_tugas ?>">
-					<?php echo form_error('nama_tugas', '<div class="text-small text-danger"> </div>') ?>
-				</div>
 
-				<div class="form-group">
-					<label>Id Pegawai</label>
-					<input type="text" name="id_pegawai" class="form-control" value="<?php echo $p->id_pegawai ?>">
-					<?php echo form_error('id_pegawai', '<div class="text-small text-danger"> </div>') ?>
-				</div>
+			<button type="submit" class="btn btn-success">Simpan</button>
+			<button type="reset" class="btn btn-danger">Reset</button>
+			<a href="<?php echo base_url('admin/data_pegawai') ?>" class="btn btn-warning">Kembali</a>
 
-				<div class="form-group">
-					<label>Id Jabatan</label>
-					<input type="id_jabatan" name="id_jabatan" class="form-control" value="<?php echo md5($p->id_jabatan) ?>">
-					<?php echo form_error('id_jabatan', '<div class="text-small text-danger"> </div>') ?>
-				</div>
-
-				<button type="submit" class="btn btn-success">Simpan</button>
-				<a href="<?php echo base_url('admin/data_tugas') ?>" class="btn btn-warning">Kembali</a>
-
-			</form>
-		<?php endforeach; ?>
+		</form>
 	</div>
 </div>

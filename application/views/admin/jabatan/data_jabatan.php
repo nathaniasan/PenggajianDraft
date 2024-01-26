@@ -23,6 +23,7 @@
 							<th class="text-center">Tunjangan Staff</th>
 							<th class="text-center">Insentif MGMP</th>
 							<th class="text-center">Tunjangan Yayasan</th>
+							<th class="text-center">BPJS</th>
 							<th class="text-center">Total</th>
 							<th class="text-center">Actions</th>
 						</tr>
@@ -53,7 +54,10 @@
 									<?php echo number_format($j->tunjangan_yayasan, 0, ',', '.') ?>
 								</td>
 								<td class="text-center">Rp.
-									<?php echo number_format($j->tj_struktural + $j->tj_transport + $j->uang_makan + $j->insentif_mgmp + $j->tunjangan_yayasan, 0, ',', '.') ?>
+									<?php echo number_format($j->tj_bpjs, 0, ',', '.') ?>
+								</td>
+								<td class="text-center">Rp.
+									<?php echo number_format($j->tj_struktural + $j->tj_transport + $j->uang_makan + $j->insentif_mgmp + $j->tunjangan_yayasan + $j->tj_bpjs, 0, ',', '.') ?>
 								</td>
 
 								<td>

@@ -182,7 +182,7 @@ if ($jml_data > 0) { ?>
 									</td> -->
 
 									<td class="text-center">Rp.
-										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan - $g->total_jumlah_potongan, 0, ',', '.') ?>
+										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan + $total_honorer - $g->total_jumlah_potongan, 0, ',', '.') ?>
 									</td>
 								</tr>
 								</tr>

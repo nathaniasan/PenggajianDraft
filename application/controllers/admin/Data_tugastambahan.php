@@ -96,7 +96,7 @@ RIGHT JOIN
 	public function update_data($id)
 	{
 
-		$data['title'] = "Data Tugas Tambahan";
+		$data['title'] = "Edit Data Tugas Tambahan";
 		$data['tugas'] = $this->ModelTugas_Tambahan->getTugasById($id);
 		$data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
 		// var_dump($data['tugas']);

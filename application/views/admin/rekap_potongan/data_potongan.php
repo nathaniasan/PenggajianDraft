@@ -43,6 +43,7 @@
 		<i class="fas fa-plus"></i> Tambah Potongan
 	</button>
 
+	<div id="flash-message-container"></div>
 
 	<div class="card shadow mb-4">
 		<div class="card-body">
@@ -124,34 +125,8 @@
 			});
 		});
 
-		$('.edit').click(function () {
+		
 
-			var potongan = $(this).attr("potongan");
-			$.ajax({
-				url: '<?php echo base_url(); ?>admin/rekap_potongan/edit_potonganGaji',
-				method: 'post',
-				data: { potongan: potongan },
-				success: function (data) {
-					$('#myModal').modal("show");
-					$('#tampil_modal').html(data);
-					document.getElementById("judul").innerHTML = 'Edit Potongan';
-				}
-			});
-		});
-
-		$('.hapus').click(function () {
-
-			var potongan = $(this).attr("potongan");
-			$.ajax({
-				url: '<?php echo base_url(); ?>admin/potongan_gaji/hapus_potonganGaji',
-				method: 'post',
-				data: { potongan: potongan },
-				success: function (data) {
-					$('#myModal').modal("show");
-					$('#tampil_modal').html(data);
-					document.getElementById("judul").innerHTML = 'Hapus Potongan';
-				}
-			});
-		});
+		
 	});
 </script>

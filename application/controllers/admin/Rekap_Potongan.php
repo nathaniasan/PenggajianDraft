@@ -51,9 +51,6 @@ class Rekap_Potongan extends CI_Controller
 		);
 		$this->db->insert('rekap_potongan', $data);
 
-		// Set flashdata to show a success message
-		$this->session->set_flashdata('success', 'Data has been successfully inserted.');
-
 		redirect('admin/rekap_potongan');
 	}
 	public function update_data($id)
@@ -62,9 +59,13 @@ class Rekap_Potongan extends CI_Controller
 
 	}
 
-	public function deletePotongan()
+	public function delete_data($id)
 	{
-		$data['hasil'] = $this->modelRekap->getAllRekap();
-		$this->load->view('admin/potongan_gaji/data_potonganGaji', $data);
+		if ($id) {
+			$this->modelRekap->deleteRekap($id);
+			redirect('admin/rekap_potongan');
+		} else {
+
+		}
 	}
 }

@@ -35,15 +35,18 @@ class Rekap_Potongan extends CI_Controller
 		$this->load->view('admin/rekap_potongan/data_potongan', $data);
 		$this->load->view('template_admin/footer');
 	}
-
-	function rekapPotongan()
+	public function tambahpotongan()
 	{
 
-		$this->load->view('admin/potongan_gaji/data_potonganGaji', $data);
+		$aksi = $this->input->post('aksi1');
+		// var_dump($aksi);
+		// die();
+		$this->load->view('admin/rekap_potongan/tambah_potongan', $aksi);
+
 	}
+
 	public function deletePotongan()
 	{
-
 		$data['hasil'] = $this->modelRekap->getAllRekap();
 		$this->load->view('admin/potongan_gaji/data_potonganGaji', $data);
 	}

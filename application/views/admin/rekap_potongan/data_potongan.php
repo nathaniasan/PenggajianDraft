@@ -48,42 +48,41 @@
 		<div class="card-body">
 
 			<div class="table-responsive">
-
-				<table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 					<thead class="thead-dark">
 						<tr>
-							<th>No</th>
-							<th>Potongan Gaji</th>
-							<th>Jumlah Potongan</th>
-							<th colspan='2'>Aksi</th>
+							<th class="text-center">No</th>
+							<th class="text-center">Nama Pegawai</th>
+							<th class="text-center">Jenis Potongan</th>
+							<th class="text-center">Aksi </th>
+
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-						$no = 1;
-						foreach ($hasil as $item) {
-							?>
+						<?php $no = 1;
+						foreach ($hasil as $item): ?>
 							<tr>
-								<td>
-									<?php echo $no; ?>
+								<td class="text-center">
+									<?php echo $no++ ?>
+								</td>
+								<td class="text-center">
+									<?php echo $item->nama_pegawai ?>
+								</td>
+								<td class="text-center">
+									<?php echo $item->potongan ?>
 								</td>
 								<td>
-									<?php echo $item->id_potongan; ?>
-								</td>
-								<td>Rp.
-									<?php echo number_format($item->id_pegawai, 0, ',', '.') ?>
-								</td>
-								<td>
-									<button type="button" potongan="<?php echo $item->id_potongan; ?>"
-										class="edit btn btn-sm btn-info"><i class="fas fa-edit"></i></button>
-									<button type="button" potongan="<?php echo $item->id_potongan; ?>"
-										class="hapus btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+									<center>
+										<a class="btn btn-sm btn-info"
+											href="<?php echo base_url('admin/rekap_potongan/update_data/' . $item->id_rekap) ?>"><i
+												class="fas fa-edit"></i></a>
+										<a onclick="return confirm('Yakin Hapus?')" class="btn btn-sm btn-danger"
+											href="<?php echo base_url('admin/rekap_potongan/delete_data/' . $item->id_rekap) ?>"><i
+												class="fas fa-trash"></i></a>
+									</center>
 								</td>
 							</tr>
-							<?php
-							$no++;
-						}
-						?>
+						<?php endforeach; ?>
 					</tbody>
 				</table>
 			</div>
@@ -95,9 +94,6 @@
 
 <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- Include Bootstrap CSS and JS -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
 <script>
 	$(document).ready(function () {

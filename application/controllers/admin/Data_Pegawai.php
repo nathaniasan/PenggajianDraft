@@ -69,7 +69,7 @@ class Data_Pegawai extends CI_Controller
 			$username = $this->input->post('username');
 			$password = md5($this->input->post('password'));
 			$jenis_kelamin = $this->input->post('jenis_kelamin');
-			$jabatan = $this->input->post('jabatan');
+			$id_jabatan = $this->input->post('id_jabatan');
 			$tanggal_masuk = $this->input->post('tanggal_masuk');
 			$honor = $this->input->post('honor');
 			$status = $this->input->post('status');
@@ -95,7 +95,7 @@ class Data_Pegawai extends CI_Controller
 				'username' => $username,
 				'password' => $password,
 				'jenis_kelamin' => $jenis_kelamin,
-				'jabatan' => $jabatan,
+				'id_jabatan' => $id_jabatan,
 				'tanggal_masuk' => $tanggal_masuk,
 				'honor' => $honor,
 				'status' => $status,
@@ -144,7 +144,7 @@ class Data_Pegawai extends CI_Controller
 			$username = $this->input->post('username');
 			$password = md5($this->input->post('password'));
 			$jenis_kelamin = $this->input->post('jenis_kelamin');
-			$jabatan = $this->input->post('jabatan');
+			$id_jabatan = $this->input->post('id_jabatan');
 			$tanggal_masuk = $this->input->post('tanggal_masuk');
 			$honor = $this->input->post('honor');
 			$status = $this->input->post('status');
@@ -170,7 +170,7 @@ class Data_Pegawai extends CI_Controller
 				'username' => $username,
 				'password' => $password,
 				'jenis_kelamin' => $jenis_kelamin,
-				'jabatan' => $jabatan,
+				'id_jabatan' => $id_jabatan,
 				'tanggal_masuk' => $tanggal_masuk,
 				'honor' => $honor,
 				'status' => $status,
@@ -187,7 +187,7 @@ class Data_Pegawai extends CI_Controller
 				$username = $this->input->post('username');
 				$password = md5($this->input->post('password'));
 				$jenis_kelamin = $this->input->post('jenis_kelamin');
-				$jabatan = $this->input->post('jabatan');
+				$id_jabatan = $this->input->post('id_jabatan');
 				$tanggal_masuk = $this->input->post('tanggal_masuk');
 				$honor = $this->input->post('honor');
 				$status = $this->input->post('status');
@@ -213,7 +213,7 @@ class Data_Pegawai extends CI_Controller
 					'username' => $username,
 					'password' => $password,
 					'jenis_kelamin' => $jenis_kelamin,
-					'jabatan' => $jabatan,
+					'id_jabatan' => $id_jabatan,
 					'tanggal_masuk' => $tanggal_masuk,
 					'honor' => $honor,
 					'status' => $status,
@@ -243,7 +243,7 @@ class Data_Pegawai extends CI_Controller
 		$this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
 		$this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
-		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+		$this->form_validation->set_rules('id_jabatan', 'Jabatan', 'required');
 		$this->form_validation->set_rules('status', 'Status', 'required');
 	}
 

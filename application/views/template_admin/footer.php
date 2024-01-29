@@ -99,10 +99,10 @@
 	var myPieChart = new Chart(ctx, {
 		type: 'doughnut',
 		data: {
-			labels: ["Karyawan Tetap", "Karyawan Tidak Tetap"],
+			labels: ["Guru", "Staff"],
 			datasets: [{
-				data: [<?php echo $this->db->query("select status from data_pegawai where status='Karyawan Tetap'")->num_rows(); ?>,
-					<?php echo $this->db->query("select status from data_pegawai where status='Karyawan Tidak Tetap'")->num_rows(); ?>,
+				data: [<?php echo $this->db->query("select status from data_pegawai where status='Guru';")->num_rows(); ?>,
+					<?php echo $this->db->query("select status from data_pegawai where status='Staff'")->num_rows(); ?>,
 				],
 				backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb'],
 				hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb'],

@@ -49,8 +49,9 @@
 						<select class="form-control" name="nama_pegawai">
 							<option value=""> Pilih Pegawai </option>
 							<?php foreach ($pegawai as $p): ?>
-								<option value="<?php echo $p->nama_pegawai ?>">
-									<?php echo $p->nama_pegawai ?>
+								<option value="<?php echo $p->id_pegawai ?>">
+									<?php echo $p->nama_pegawai ?><br>
+
 								</option>
 							<?php endforeach; ?>
 						</select>

@@ -21,7 +21,13 @@ class Data_Pegawai extends CI_Controller
 	public function index()
 	{
 		$data['title'] = "Data Pegawai";
-		$data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
+		$data['pegawai'] = $this->db->query("SELECT data_pegawai.*,data_jabatan.nama_jabatan
+		FROM data_pegawai
+		INNER JOIN data_jabatan ON data_pegawai.id_jabatan = data_jabatan.id_jabatan
+		ORDER BY data_pegawai.nama_pegawai ASC")->result();
+
+		// var_dump($data['pegawai']);
+		// die();
 
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');
@@ -117,6 +123,14 @@ class Data_Pegawai extends CI_Controller
 
 	public function update_data($id)
 	{
+		$error_message = $this->session->flashdata('error_message');
+
+		if (!empty($error_message)) {
+
+			echo '<div class="alert alert-danger">' . $error_message . '</div>';
+		}
+		$data['error_message'] = $this->session->flashdata('error_message');
+
 		$where = array('id_pegawai' => $id);
 		$data['title'] = "update Data Pegawai";
 		$data['jabatan'] = $this->ModelPenggajian->get_data('data_jabatan')->result();
@@ -136,7 +150,9 @@ class Data_Pegawai extends CI_Controller
 		$this->_rules();
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->update_data();
+			$this->session->set_flashdata('error_message', 'Tolong isi data yang belum terisi!.');
+
+			$this->update_data($this->input->post('id_pegawai'));
 		} else {
 			$id = $this->input->post('id_pegawai');
 			$nik = $this->input->post('nik');

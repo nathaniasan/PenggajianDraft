@@ -27,7 +27,7 @@
 
 	<?php foreach ($print_slip as $ps): ?>
 
-		<?php $potongan_gaji = $ps->alpha * $potongan; ?>
+		<?php $potongan_gaji = $ps->hadir * $potongan; ?>
 
 		<table style="width: 100%">
 			<tr>

@@ -26,9 +26,9 @@ class data_tugastambahan extends CI_Controller
 		$data['tugas'] = $this->db->query("
 		SELECT DISTINCT
     dp.nama_pegawai,
-    dp.jabatan, tb.nama_tugas,tb.id_tugas
+    dj.nama_jabatan, tb.nama_tugas,tb.id_tugas
 FROM
-    data_pegawai dp
+    data_pegawai dp inner join data_jabatan dj on dp.id_jabatan = dj.id_jabatan
 RIGHT JOIN
     tugas_tambahan tb ON dp.id_pegawai = tb.id_pegawai;
 ")->result();
@@ -49,9 +49,9 @@ RIGHT JOIN
 		$data['tugas'] = $this->db->query("
 		SELECT DISTINCT
     dp.nama_pegawai,
-    dp.jabatan, tb.nama_tugas,tb.id_tugas
+    dj.nama_jabatan, tb.nama_tugas,tb.id_tugas
 FROM
-    data_pegawai dp
+    data_pegawai dp inner join data_jabatan dj on dp.id_jabatan = dj.id_jabatan
 RIGHT JOIN
     tugas_tambahan tb ON dp.id_pegawai = tb.id_pegawai;
 ")->result();

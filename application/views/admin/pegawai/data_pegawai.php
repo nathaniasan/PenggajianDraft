@@ -45,7 +45,7 @@
 									<?php echo $p->jenis_kelamin ?>
 								</td>
 								<td class="text-center">
-									<?php echo $p->jabatan ?>
+									<?php echo $p->nama_jabatan ?>
 								</td>
 								<td class="text-center">
 									<?php echo $p->tanggal_masuk ?>

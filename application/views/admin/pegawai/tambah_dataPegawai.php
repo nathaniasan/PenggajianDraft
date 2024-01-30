@@ -52,10 +52,10 @@
 
 			<div class="form-group">
 				<label>Jabatan</label>
-				<select name="jabatan" class="form-control">
+				<select name="id_jabatan" class="form-control">
 					<option value="">--Pilih Jabatan--</option>
 					<?php foreach ($jabatan as $j): ?>
-						<option value="<?php echo $j->nama_jabatan ?>">
+						<option value="<?php echo $j->id_jabatan ?>">
 							<?php echo $j->nama_jabatan ?>
 						</option>
 					<?php endforeach; ?>

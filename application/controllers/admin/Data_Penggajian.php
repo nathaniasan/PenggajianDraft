@@ -49,9 +49,9 @@ class Data_Penggajian extends CI_Controller
 FROM 
     data_pegawai dp
 INNER JOIN 
-    data_kehadiran dk ON dk.nik = dp.nik
+    data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
 INNER JOIN 
-    data_jabatan dj ON dj.nama_jabatan = dp.jabatan
+    data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
 LEFT JOIN (
     SELECT 
         rp.id_pegawai,
@@ -70,6 +70,8 @@ GROUP BY
 ")->result();
 		// var_dump($bulantahun);
 		// var_dump($data['gaji']);
+		// echo "<h1>haha</h1>";
+		// var_dump($data['potongan']);
 		// die();
 
 		$this->load->view('template_admin/header', $data);

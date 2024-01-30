@@ -38,7 +38,7 @@
 									<?php echo $p->nama_pegawai ?>
 								</td>
 								<td class="text-center">
-									<?php echo $p->jabatan ?>
+									<?php echo $p->nama_jabatan ?>
 								</td>
 								<td>
 									<center>

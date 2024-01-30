@@ -39,9 +39,61 @@ class Slip_Gaji extends CI_Controller
 		$tahun = $this->input->post('tahun');
 		$bulantahun = $bulan . $tahun;
 
-		$data['print_slip'] = $this->db->query("SELECT data_pegawai.nik,data_pegawai.nama_pegawai,data_jabatan.nama_jabatan,data_jabatan.tj_struktural,data_jabatan.tj_transport,data_jabatan.uang_makan,data_kehadiran.hadir,data_kehadiran.bulan FROM data_pegawai INNER JOIN data_kehadiran ON data_kehadiran.id_pegawai=data_pegawai.id_pegawai
-		INNER JOIN data_jabatan ON data_jabatan.id_jabatan=data_pegawai.id_jabatan
-		WHERE data_kehadiran.bulan='$bulantahun' AND data_kehadiran.id_pegawai='$nama'")->result();
+		$data['print_slip'] = $this->db->query("SELECT 
+		dp.nik,
+		dp.nama_pegawai,
+		dp.jenis_kelamin,
+		dp.honor,
+		dj.nama_jabatan,
+		dj.tj_struktural,
+		dj.insentif_mgmp,
+		dj.tunjangan_yayasan,
+		dj.tj_transport,
+		dj.uang_makan,
+		dk.hadir,
+		rp.jumlah_potongan,
+		rp.total_jumlah_potongan,
+		pg.JenisPotongan
+	FROM 
+		data_pegawai dp
+	INNER JOIN 
+		data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
+	INNER JOIN 
+		data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
+	LEFT JOIN (
+		SELECT 
+			rp.id_pegawai,
+			COUNT(rp.id_potongan) AS jumlah_potongan,
+			SUM(pg.jml_potongan) AS total_jumlah_potongan
+		FROM 
+			rekap_potongan rp
+		INNER JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			rp.id_pegawai
+	) AS rp ON rp.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			rekap_potongan rp ON dp.id_pegawai = rp.id_pegawai
+		JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		WHERE 
+			dp.id_pegawai = '$nama'
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	WHERE 
+		dp.id_pegawai = '$nama' AND
+		dk.bulan = '$bulantahun'
+	GROUP BY 
+		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan;
+	")->result();
 		// var_dump($data['print_slip']);
 		// die();
 		$this->load->view('template_admin/header', $data);

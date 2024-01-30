@@ -33,46 +33,59 @@ class Data_Penggajian extends CI_Controller
 		$data['potongan'] = $this->ModelPenggajian->get_data('potongan_gaji')->result();
 		$data['gaji'] = $this->db->query("
 		SELECT 
-    dp.nik,
-    dp.nama_pegawai,
-    dp.jenis_kelamin,
-	dp.honor,
-    dj.nama_jabatan,
-    dj.tj_struktural,
-    dj.insentif_mgmp,
-    dj.tunjangan_yayasan,
-    dj.tj_transport,
-    dj.uang_makan,
-    dk.hadir,
-    rp.jumlah_potongan,
-    rp.total_jumlah_potongan
-FROM 
-    data_pegawai dp
-INNER JOIN 
-    data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
-INNER JOIN 
-    data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
-LEFT JOIN (
-    SELECT 
-        rp.id_pegawai,
-        COUNT(rp.id_potongan) AS jumlah_potongan,
-        SUM(pg.jml_potongan) AS total_jumlah_potongan
-    FROM 
-        rekap_potongan rp
-    INNER JOIN 
-        potongan_gaji pg ON rp.id_potongan = pg.id
-    GROUP BY 
-        rp.id_pegawai
-) AS rp ON rp.id_pegawai = dp.id_pegawai where dk.bulan='$bulantahun'
-GROUP BY 
-    dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
-    dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai;
+		dp.nik,
+		dp.nama_pegawai,
+		dp.jenis_kelamin,
+		dp.honor,
+		dj.nama_jabatan,
+		dj.tj_struktural,
+		dj.insentif_mgmp,
+		dj.tunjangan_yayasan,
+		dj.tj_transport,
+		dj.uang_makan,
+		dk.hadir,
+		rp.jumlah_potongan,
+		rp.total_jumlah_potongan,
+		pg.JenisPotongan
+	FROM 
+		data_pegawai dp
+	INNER JOIN 
+		data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
+	INNER JOIN 
+		data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
+	LEFT JOIN (
+		SELECT 
+			rp.id_pegawai,
+			COUNT(rp.id_potongan) AS jumlah_potongan,
+			SUM(pg.jml_potongan) AS total_jumlah_potongan
+		FROM 
+			rekap_potongan rp
+		INNER JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			rp.id_pegawai
+	) AS rp ON rp.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			rekap_potongan rp ON dp.id_pegawai = rp.id_pegawai
+		JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	WHERE 
+		dk.bulan = '$bulantahun'
+	GROUP BY 
+		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan;			
 ")->result();
 		// var_dump($bulantahun);
-		// var_dump($data['gaji']);
-		// echo "<h1>haha</h1>";
-		// var_dump($data['potongan']);
-		// die();
+
 
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');

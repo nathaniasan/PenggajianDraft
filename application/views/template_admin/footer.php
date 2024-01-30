@@ -31,6 +31,48 @@
 
 <script type="text/javascript">
 	document.getElementById('tanggal_masuk').addEventListener('change', async function () {
+		updateHonor();
+	});
+
+	document.getElementById('status').addEventListener('change', async function () {
+		updateHonor();
+	});
+
+	async function updateHonor() {
+		let tanggalMasuk = new Date(document.getElementById('tanggal_masuk').value);
+		let currentDate = new Date();
+
+		let differenceInYears = currentDate.getFullYear() - tanggalMasuk.getFullYear();
+		if (currentDate.getMonth() < tanggalMasuk.getMonth() ||
+			(currentDate.getMonth() === tanggalMasuk.getMonth() && currentDate.getDate() < tanggalMasuk.getDate())) {
+			differenceInYears--;
+		}
+		let honor = document.getElementById('honor');
+		let status = document.getElementById('status').value;
+
+		if (differenceInYears >= 5 && status === 'Guru') {
+			honor.value = 100000;
+		}
+		else if (differenceInYears == 4 && status === 'Guru') {
+			honor.value = 90000;
+		}
+		else if (differenceInYears == 3 && status === 'Guru') {
+			honor.value = 85000;
+		}
+		else if (differenceInYears == 2 && status === 'Guru') {
+			honor.value = 80000;
+		}
+		else if (differenceInYears <= 1 && status === 'Guru') {
+			honor.value = 75000;
+		} else {
+			honor.value = 6000;
+		}
+	}
+</script>
+
+
+<!-- <script type="text/javascript">
+	document.getElementById('tanggal_masuk').addEventListener('change', async function () {
 		let tanggalMasuk = new Date(this.value);
 		let currentDate = new Date();
 
@@ -40,14 +82,15 @@
 			differenceInYears--;
 		}
 
-		let honorField = document.getElementById('honor');
+		let honor = document.getElementById('honor');
 		if (differenceInYears > 5) {
-			honorField.value = '10000';
+			honor.value = '10000';
 		} else {
-			honorField.value = '5777'; // Reset the value if not more than 5 years
+			honor.value = '5777'; // Reset the value if not more than 5 years
 		}
 	});
-</script>
+</script> -->
+
 
 
 <script type="text/javascript">
@@ -56,10 +99,10 @@
 	var myPieChart = new Chart(ctx, {
 		type: 'doughnut',
 		data: {
-			labels: ["Karyawan Tetap", "Karyawan Tidak Tetap"],
+			labels: ["Guru", "Staff"],
 			datasets: [{
-				data: [<?php echo $this->db->query("select status from data_pegawai where status='Karyawan Tetap'")->num_rows(); ?>,
-					<?php echo $this->db->query("select status from data_pegawai where status='Karyawan Tidak Tetap'")->num_rows(); ?>,
+				data: [<?php echo $this->db->query("select status from data_pegawai where status='Guru';")->num_rows(); ?>,
+					<?php echo $this->db->query("select status from data_pegawai where status='Staff'")->num_rows(); ?>,
 				],
 				backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb'],
 				hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb'],

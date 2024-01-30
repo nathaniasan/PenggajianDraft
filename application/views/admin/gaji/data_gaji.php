@@ -109,17 +109,17 @@ if ($jml_data > 0) { ?>
 								<th class="text-center">Jabatan</th>
 								<th class="text-center">Tj Struktural</th>
 								<th class="text-center">Tj. Transport</th>
-								<th class="text-center">Uang Makan</th>
-								<th class="text-center">Potongan</th>
+								<th class="text-center">Tj. Staff</th>
+								<th class="text-center">Insentif MGMP</th>
+								<th class="text-center">Tj Yayasan</th>
+								<th class="text-center">Honor Pokok</th>
+								<th class="text-center">Jam Kehadiran</th>
+								<th class="text-center">Jumlah Potongan Gaji</th>
 								<th class="text-center">Total Gaji</th>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($potongan as $p): {
-								$alpha = $p->jml_potongan;
-							}
-							?>
-							<?php endforeach; ?>
+
 							<?php $no = 1;
 							// var_dump($gaji);
 							echo PHP_EOL;
@@ -129,8 +129,10 @@ if ($jml_data > 0) { ?>
 						
 							// die();
 							foreach ($gaji as $g): ?>
-								<?php $potongan = $g->alpha * $alpha
-									?>
+								<?php $total_honorer = $g->honor * $g->hadir;
+								// echo ($total_honorer . "    " . $g->honor . "    " . $g->hadir);
+								// die();
+								?>
 								<tr>
 									<td class="text-center">
 										<?php echo $no++ ?>
@@ -157,13 +159,38 @@ if ($jml_data > 0) { ?>
 										<?php echo number_format($g->uang_makan, 0, ',', '.') ?>
 									</td>
 									<td class="text-center">Rp.
-										<?php echo number_format($potongan, 0, ',', '.') ?>
+										<?php echo number_format($g->insentif_mgmp, 0, ',', '.') ?>
 									</td>
 									<td class="text-center">Rp.
-										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan - $potongan, 0, ',', '.') ?>
+										<?php echo number_format($g->tunjangan_yayasan, 0, ',', '.') ?>
+									</td>
+									<td class="text-center">Rp.
+										<?php echo number_format($total_honorer, 0, ',', '.') ?>
+									</td>
+
+									<td class="text-center">
+										<?php echo $g->hadir ?>
+									</td>
+
+									<td class="text-center">Rp.
+										<?php echo number_format(
+											$g->total_jumlah_potongan
+											,
+											0,
+											',',
+											'.'
+										) ?>
+									</td>
+									<!-- <td class="text-center">Rp.
+										<?php echo number_format($potongan, 0, ',', '.') ?>
+									</td> -->
+
+									<td class="text-center">Rp.
+										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan + $total_honorer - $g->total_jumlah_potongan, 0, ',', '.') ?>
 									</td>
 								</tr>
 								</tr>
+
 
 							<?php endforeach; ?>
 						</tbody>

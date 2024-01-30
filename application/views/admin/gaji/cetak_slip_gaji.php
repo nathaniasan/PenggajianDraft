@@ -27,7 +27,7 @@
 
 	<?php foreach ($print_slip as $ps): ?>
 
-		<?php $potongan_gaji = $ps->alpha * $potongan; ?>
+		<?php $potongan_gaji = $ps->hadir * $potongan; ?>
 
 		<table style="width: 100%">
 			<tr>
@@ -91,7 +91,7 @@
 
 			<tr>
 				<td>3</td>
-				<td>Uang Makan</td>
+				<td>Tj. Staff</td>
 				<td>Rp.
 					<?php echo number_format($ps->uang_makan, 0, ',', '.') ?>
 				</td>
@@ -126,7 +126,7 @@
 				</td>
 
 				<td width="200px">
-					<p>Yogyakarta,
+					<p>Bandar Lampung,
 						<?php echo date("d M Y") ?> <br> Finance,
 					</p>
 					<br>

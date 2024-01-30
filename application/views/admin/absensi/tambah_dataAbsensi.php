@@ -78,7 +78,7 @@
 				<td class="text-center">No</td>
 				<td class="text-center">NIK</td>
 				<td class="text-center">Nama Pegawai</td>
-				<td class="text-center">Jenias Kalamin</td>
+				<td class="text-center">Jenis Kelamin</td>
 				<td class="text-center">Jabatan</td>
 				<td class="text-center" width="8%">Hadir</td>
 				<td class="text-center" width="8%">Sakit</td>
@@ -88,10 +88,7 @@
 			foreach ($input_absensi as $a): ?>
 				<tr>
 					<input type="hidden" name="bulan[]" class="form-control" value="<?php echo $bulantahun ?>">
-					<input type="hidden" name="nik[]" class="form-control" value="<?php echo $a->nik ?>">
-					<input type="hidden" name="nama_pegawai[]" class="form-control" value="<?php echo $a->nama_pegawai ?>">
-					<input type="hidden" name="jenis_kelamin[]" class="form-control" value="<?php echo $a->jenis_kelamin ?>">
-					<input type="hidden" name="nama_jabatan[]" class="form-control" value="<?php echo $a->nama_jabatan ?>">
+					<input type="hidden" name="id_pegawai[]" class="form-control" value="<?php echo $a->id_pegawai ?>">
 
 
 					<td>

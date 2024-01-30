@@ -1,25 +1,27 @@
 <?php
 
-class Slip_Gaji extends CI_Controller {
+class Slip_Gaji extends CI_Controller
+{
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
 
-		if($this->session->userdata('hak_akses') != '1'){
-			$this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		if ($this->session->userdata('hak_akses') != '1') {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				<strong>Anda Belum Login!</strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
 				</div>');
-				redirect('login');
+			redirect('login');
 		}
 	}
 
-	public function index() 
+	public function index()
 	{
 		$data['title'] = "Slip Gaji Pegawai";
-		$data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')-> result();
+		$data['pegawai'] = $this->ModelPenggajian->get_data('data_pegawai')->result();
 
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('template_admin/sidebar');
@@ -27,20 +29,75 @@ class Slip_Gaji extends CI_Controller {
 		$this->load->view('template_admin/footer');
 	}
 
-	public function cetak_slip_gaji(){
+	public function cetak_slip_gaji()
+	{
 
-	$data['title'] = "Cetak Laporan Absensi Pegawai";
-	$data['potongan'] = $this->ModelPenggajian->get_data('potongan_gaji')-> result();
-	$nama = $this->input->post('nama_pegawai');
-	$bulan = $this->input->post('bulan');
-	$tahun = $this->input->post('tahun');
-	$bulantahun =$bulan.$tahun;
+		$data['title'] = "Cetak Laporan Absensi Pegawai";
+		$data['potongan'] = $this->ModelPenggajian->get_data('potongan_gaji')->result();
+		$nama = $this->input->post('nama_pegawai');
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
+		$bulantahun = $bulan . $tahun;
 
-	$data['print_slip'] = $this->db->query("SELECT data_pegawai.nik,data_pegawai.nama_pegawai,data_jabatan.nama_jabatan,data_jabatan.tj_struktural,data_jabatan.tj_transport,data_jabatan.uang_makan,data_kehadiran.alpha,data_kehadiran.bulan FROM data_pegawai INNER JOIN data_kehadiran ON data_kehadiran.nik=data_pegawai.nik
-		INNER JOIN data_jabatan ON data_jabatan.nama_jabatan=data_pegawai.jabatan
-		WHERE data_kehadiran.bulan='$bulantahun' AND data_kehadiran.nama_pegawai='$nama'")->result();
-	$this->load->view('template_admin/header',$data);
-	$this->load->view('admin/gaji/cetak_slip_gaji', $data);
+		$data['print_slip'] = $this->db->query("SELECT 
+		dp.nik,
+		dp.nama_pegawai,
+		dp.jenis_kelamin,
+		dp.honor,
+		dj.nama_jabatan,
+		dj.tj_struktural,
+		dj.insentif_mgmp,
+		dj.tunjangan_yayasan,
+		dj.tj_transport,
+		dj.uang_makan,
+		dk.hadir,
+		rp.jumlah_potongan,
+		rp.total_jumlah_potongan,
+		pg.JenisPotongan
+	FROM 
+		data_pegawai dp
+	INNER JOIN 
+		data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
+	INNER JOIN 
+		data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
+	LEFT JOIN (
+		SELECT 
+			rp.id_pegawai,
+			COUNT(rp.id_potongan) AS jumlah_potongan,
+			SUM(pg.jml_potongan) AS total_jumlah_potongan
+		FROM 
+			rekap_potongan rp
+		INNER JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			rp.id_pegawai
+	) AS rp ON rp.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			rekap_potongan rp ON dp.id_pegawai = rp.id_pegawai
+		JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		WHERE 
+			dp.id_pegawai = '$nama'
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	WHERE 
+		dp.id_pegawai = '$nama' AND
+		dk.bulan = '$bulantahun'
+	GROUP BY 
+		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan;
+	")->result();
+		// var_dump($data['print_slip']);
+		// die();
+		$this->load->view('template_admin/header', $data);
+		$this->load->view('admin/gaji/cetak_slip_gaji', $data);
 	}
 }
 ?>

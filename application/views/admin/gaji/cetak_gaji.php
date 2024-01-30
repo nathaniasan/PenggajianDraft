@@ -47,7 +47,7 @@
 				<th class="text-center">Jabatan</th>
 				<th class="text-center">Tj Struktural</th>
 				<th class="text-center">Tj. Transport</th>
-				<th class="text-center">Uang Makan</th>
+				<th class="text-center">Tj. Staff</th>
 				<th class="text-center">Potongan</th>
 				<th class="text-center">Total Gaji</th>
 			</tr>

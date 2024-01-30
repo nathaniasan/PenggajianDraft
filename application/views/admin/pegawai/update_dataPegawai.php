@@ -13,7 +13,11 @@
 
 <div class="card" style="width: 60% ; margin-bottom: 100px">
 	<div class="card-body">
-
+		<?php if (!empty($error_message)): ?>
+			<div class="alert alert-danger">
+				<?php echo $error_message; ?>
+			</div>
+		<?php endif; ?>
 		<?php foreach ($pegawai as $p): ?>
 			<form method="POST" action="<?php echo base_url('admin/data_pegawai/update_data_aksi') ?>"
 				enctype="multipart/form-data">
@@ -57,12 +61,10 @@
 
 				<div class="form-group">
 					<label>Jabatan</label>
-					<select name="jabatan" class="form-control">
-						<option value="<?php echo $p->jabatan ?>">
-							<?php echo $p->jabatan ?>
-						</option>
+					<select name="id_jabatan" class="form-control">
+						<option value="">--Pilih Jabatan--</option>
 						<?php foreach ($jabatan as $j): ?>
-							<option value="<?php echo $j->nama_jabatan ?>">
+							<option value="<?php echo $j->id_jabatan ?>">
 								<?php echo $j->nama_jabatan ?>
 							</option>
 						<?php endforeach; ?>
@@ -85,6 +87,12 @@
 						<option value="Staff">Staff</option>
 					</select>
 					<?php echo form_error('status', '<div class="text-small text-danger"> </div>') ?>
+				</div>
+
+				<div class="form-group">
+					<label for="honor">Honor/Jam:</label>
+					<input type="text" id="honor" name="honor" class="form-control" value="<?php echo $p->honor ?>">
+					<?php echo form_error('honor', '<div class="text-small text-danger"> </div>') ?>
 				</div>
 
 				<div class="form-group">

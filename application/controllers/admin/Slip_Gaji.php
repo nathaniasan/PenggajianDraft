@@ -51,9 +51,11 @@ class Slip_Gaji extends CI_Controller
 		dj.tj_transport,
 		dj.uang_makan,
 		dk.hadir,
+		dk.bulan,
 		rp.jumlah_potongan,
 		rp.total_jumlah_potongan,
-		pg.JenisPotongan
+		pg.JenisPotongan,
+		tb.tugasTambahan
 	FROM 
 		data_pegawai dp
 	INNER JOIN 
@@ -87,15 +89,32 @@ class Slip_Gaji extends CI_Controller
 		GROUP BY 
 			dp.id_pegawai, dp.nama_pegawai
 	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(tb.nama_tugas ORDER BY tb.id_tugas SEPARATOR ', ') AS tugasTambahan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			tugas_tambahan tb ON dp.id_pegawai = tb.id_pegawai
+		WHERE 
+			dp.id_pegawai = '$nama'
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS tb ON tb.id_pegawai = dp.id_pegawai
 	WHERE 
 		dp.id_pegawai = '$nama' AND
 		dk.bulan = '$bulantahun'
 	GROUP BY 
 		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
-		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan;
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai,tb.id_pegawai,pg.JenisPotongan;
 	")->result();
-		// var_dump($data['print_slip']);
-		// die();
+		var_dump($data['print_slip']);
+		die();
+		// $data['bulan'] = $bulan;
+		// $data['tahun'] = $tahun;
+
+
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('admin/gaji/cetak_slip_gaji', $data);
 	}

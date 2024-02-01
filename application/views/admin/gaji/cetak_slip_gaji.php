@@ -96,6 +96,21 @@
 					<?php echo number_format($ps->uang_makan, 0, ',', '.') ?>
 				</td>
 			</tr>
+			<tr>
+				<td>3</td>
+				<td>Insentif MGMP</td>
+				<td>Rp.
+					<?php echo number_format($ps->insentif_mgmp, 0, ',', '.') ?>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Tunjangan Yayasan</td>
+				<td>Rp.
+					<?php echo number_format($ps->tunjangan_yayasan, 0, ',', '.') ?>
+				</td>
+			</tr>
+
 
 			<tr>
 				<td>4</td>

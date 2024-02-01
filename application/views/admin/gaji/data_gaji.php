@@ -112,6 +112,7 @@ if ($jml_data > 0) { ?>
 								<th class="text-center">Tj. Staff</th>
 								<th class="text-center">Insentif MGMP</th>
 								<th class="text-center">Tj Yayasan</th>
+								<th class="text-center">Tj Piket</th>
 								<th class="text-center">Honor Pokok</th>
 								<th class="text-center">Jam Kehadiran</th>
 								<th class="text-center">Jumlah Potongan Gaji</th>
@@ -130,6 +131,8 @@ if ($jml_data > 0) { ?>
 							// die();
 							foreach ($gaji as $g): ?>
 								<?php $total_honorer = $g->honor * $g->hadir;
+								$tj_piket = 80000 * $g->piket;
+
 								// echo ($total_honorer . "    " . $g->honor . "    " . $g->hadir);
 								// die();
 								?>
@@ -165,6 +168,9 @@ if ($jml_data > 0) { ?>
 										<?php echo number_format($g->tunjangan_yayasan, 0, ',', '.') ?>
 									</td>
 									<td class="text-center">Rp.
+										<?php echo number_format($tj_piket, 0, ',', '.') ?>
+									</td>
+									<td class="text-center">Rp.
 										<?php echo number_format($total_honorer, 0, ',', '.') ?>
 									</td>
 
@@ -186,7 +192,7 @@ if ($jml_data > 0) { ?>
 									</td> -->
 
 									<td class="text-center">Rp.
-										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan + $total_honorer - $g->total_jumlah_potongan, 0, ',', '.') ?>
+										<?php echo number_format($g->tj_struktural + $g->tj_transport + $g->uang_makan + $tj_piket + $total_honorer - $g->total_jumlah_potongan, 0, ',', '.') ?>
 									</td>
 								</tr>
 								</tr>

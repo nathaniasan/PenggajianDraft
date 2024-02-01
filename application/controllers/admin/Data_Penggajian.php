@@ -111,7 +111,7 @@ class Data_Penggajian extends CI_Controller
 			data_pegawai.jenis_kelamin,data_jabatan.nama_jabatan,data_jabatan.tj_struktural,
 			data_jabatan.tj_transport,data_jabatan.uang_makan,data_kehadiran.alpha FROM data_pegawai
 			INNER JOIN data_kehadiran ON data_kehadiran.nik=data_pegawai.nik
-			INNER JOIN data_jabatan ON data_jabatan.nama_jabatan=data_pegawai.jabatan
+			INNER JOIN data_jabatan ON data_jabatan.id_jabatan=data_pegawai.id_jabatan
 			WHERE data_kehadiran.bulan='$bulantahun'
 			ORDER BY data_pegawai.nama_pegawai ASC")->result();
 		$this->load->view('template_admin/header', $data);

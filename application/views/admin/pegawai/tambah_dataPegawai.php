@@ -79,7 +79,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="honor">Honor/Jam:</label>
+				<label for="honor">Honor Guru/Transport Staff :</label>
 				<input type="text" id="honor" name="honor" class="form-control">
 				<?php echo form_error('honor', '<div class="text-small text-danger"> </div>') ?>
 			</div>

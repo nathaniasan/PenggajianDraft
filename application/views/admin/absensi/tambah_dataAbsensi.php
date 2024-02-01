@@ -83,6 +83,7 @@
 				<td class="text-center" width="8%">Hadir</td>
 				<td class="text-center" width="8%">Sakit</td>
 				<td class="text-center" width="8%">Alpha</td>
+				<td class="text-center" width="8%">Piket</td>
 			</tr>
 			<?php $no = 1;
 			foreach ($input_absensi as $a): ?>
@@ -109,6 +110,7 @@
 					<td><input type="number" name="hadir[]" class="form-control" value="0"></td>
 					<td><input type="number" name="sakit[]" class="form-control" value="0"></td>
 					<td><input type="number" name="alpha[]" class="form-control" value="0"></td>
+					<td><input type="number" name="piket[]" class="form-control" value="0"></td>
 				<?php endforeach; ?>
 		</table><br></br><br></br>
 	</form>

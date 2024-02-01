@@ -70,6 +70,7 @@ class Data_Absensi extends CI_Controller
 						'hadir' => $post['hadir'][$key],
 						'sakit' => $post['sakit'][$key],
 						'alpha' => $post['alpha'][$key],
+						'piket' => $post['piket'][$key],
 					);
 				}
 			}

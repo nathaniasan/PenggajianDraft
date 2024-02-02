@@ -266,14 +266,27 @@ class Data_Pegawai extends CI_Controller
 	public function delete_data($id)
 	{
 		$where = array('id_pegawai' => $id);
+
+		// Get the file name from the database
+		$photo_data = $this->db->select('photo')->get_where('data_pegawai', $where)->row();
+		$photo_file = $photo_data->photo;
+
+		// Delete the photo file from the server
+		if (!empty($photo_file) && file_exists('./photo/' . $photo_file)) {
+			unlink('./photo/' . $photo_file);
+		}
+
+		// Delete the data entry from the database
 		$this->ModelPenggajian->delete_data($where, 'data_pegawai');
+
 		$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>Data berhasil dihapus!</strong>
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-				</div>');
+        <strong>Data berhasil dihapus!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>');
 		redirect('admin/data_pegawai');
 	}
+
 }
 ?>

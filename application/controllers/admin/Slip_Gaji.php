@@ -51,6 +51,7 @@ class Slip_Gaji extends CI_Controller
 		dj.tj_transport,
 		dj.uang_makan,
 		dk.hadir,
+		dk.piket,
 		dk.bulan,
 		rp.jumlah_potongan,
 		rp.total_jumlah_potongan,

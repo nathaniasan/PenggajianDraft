@@ -43,7 +43,6 @@
 							</option>
 						<?php } ?>
 					</select>
-					</select>
 				</div>
 
 				<button type="submit" class="btn btn-primary mb-2 ml-auto"><i class="fas fa-eye"></i> Generate

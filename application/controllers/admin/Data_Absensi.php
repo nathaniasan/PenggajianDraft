@@ -58,8 +58,6 @@ class Data_Absensi extends CI_Controller
 		// die();
 		if ($this->input->post('submit', TRUE) == 'submit') {
 			$post = $this->input->post();
-			// var_dump($post);
-			// die();
 
 			foreach ($post['bulan'] as $key => $value) {
 				if ($post['bulan'][$key] != '') {

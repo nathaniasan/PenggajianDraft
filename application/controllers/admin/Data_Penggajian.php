@@ -120,6 +120,7 @@ class Data_Penggajian extends CI_Controller
 		dj.tj_transport,
 		dj.uang_makan,
 		dk.hadir,
+		dk.bulan,
 		dk.piket,
 		rp.jumlah_potongan,
 		rp.total_jumlah_potongan,
@@ -159,7 +160,7 @@ class Data_Penggajian extends CI_Controller
 		dk.bulan = '$bulantahun'
 	GROUP BY 
 		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
-		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan;			
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan ;			
 ")->result();
 		$this->load->view('template_admin/header', $data);
 		$this->load->view('admin/gaji/cetak_gaji', $data);

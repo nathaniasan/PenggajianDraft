@@ -15,52 +15,82 @@
 <!-- End of Page Wrapper -->
 
 <!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-	<i class="fas fa-angle-up"></i>
-</a>
-
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">×</span>
-				</button>
-			</div>
-			<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-			<div class="modal-footer">
-				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				<a class="btn btn-primary" href="login.html">Logout</a>
-			</div>
-		</div>
-	</div>
-</div>
 
 <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
 <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<?php echo base_url(); ?>assets/js/sb-admin-3.min.js"></script>
-
-<!-- Page level plugins -->
+<script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
 <script src="<?php echo base_url(); ?>assets/js/Chart.js"></script>
-
-
-<!-- Page level plugins -->
 <script src="<?php echo base_url(); ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
 <script src="<?php echo base_url(); ?>assets/js/demo/datatables-demo.js"></script>
+<link href="<?php echo base_url(); ?>assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+	document.getElementById('tanggal_masuk').addEventListener('change', async function () {
+		updateHonor();
+	});
+
+	document.getElementById('status').addEventListener('change', async function () {
+		updateHonor();
+	});
+
+	async function updateHonor() {
+		let tanggalMasuk = new Date(document.getElementById('tanggal_masuk').value);
+		let currentDate = new Date();
+
+		let differenceInYears = currentDate.getFullYear() - tanggalMasuk.getFullYear();
+		if (currentDate.getMonth() < tanggalMasuk.getMonth() ||
+			(currentDate.getMonth() === tanggalMasuk.getMonth() && currentDate.getDate() < tanggalMasuk.getDate())) {
+			differenceInYears--;
+		}
+		let honor = document.getElementById('honor');
+		let status = document.getElementById('status').value;
+
+		if (differenceInYears >= 5 && status === 'Guru') {
+			honor.value = 100000;
+		}
+		else if (differenceInYears == 4 && status === 'Guru') {
+			honor.value = 90000;
+		}
+		else if (differenceInYears == 3 && status === 'Guru') {
+			honor.value = 85000;
+		}
+		else if (differenceInYears == 2 && status === 'Guru') {
+			honor.value = 80000;
+		}
+		else if (differenceInYears <= 1 && status === 'Guru') {
+			honor.value = 75000;
+		} else {
+			honor.value = 6000;
+		}
+	}
+</script>
+
+
+<!-- <script type="text/javascript">
+	document.getElementById('tanggal_masuk').addEventListener('change', async function () {
+		let tanggalMasuk = new Date(this.value);
+		let currentDate = new Date();
+
+		let differenceInYears = currentDate.getFullYear() - tanggalMasuk.getFullYear();
+		if (currentDate.getMonth() < tanggalMasuk.getMonth() ||
+			(currentDate.getMonth() === tanggalMasuk.getMonth() && currentDate.getDate() < tanggalMasuk.getDate())) {
+			differenceInYears--;
+		}
+
+		let honor = document.getElementById('honor');
+		if (differenceInYears > 5) {
+			honor.value = '10000';
+		} else {
+			honor.value = '5777'; // Reset the value if not more than 5 years
+		}
+	});
+</script> -->
+
 
 
 <script type="text/javascript">
@@ -69,12 +99,11 @@
 	var myPieChart = new Chart(ctx, {
 		type: 'doughnut',
 		data: {
-			labels: ["HRD", "Manager", "Staff Marketing", "Direktur"],
+			labels: ["Guru", "Staff"],
 			datasets: [{
-				data: [<?php echo $this->db->query("select jabatan from data_pegawai where jabatan='HRD'")->num_rows(); ?>,
-					<?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Manager'")->num_rows(); ?>,
-					<?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Staff Marketing'")->num_rows(); ?>,
-					<?php echo $this->db->query("select jabatan from data_pegawai where jabatan='Direktur'")->num_rows(); ?>],
+				data: [<?php echo $this->db->query("select status from data_pegawai where status='Guru';")->num_rows(); ?>,
+					<?php echo $this->db->query("select status from data_pegawai where status='Staff'")->num_rows(); ?>,
+				],
 				backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#dddfeb'],
 				hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#dddfeb'],
 				hoverBorderColor: "rgba(234, 236, 244, 1)",

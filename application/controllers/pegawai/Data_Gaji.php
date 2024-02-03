@@ -20,16 +20,78 @@ class Data_Gaji extends CI_Controller
 	public function index()
 	{
 		$data['title'] = "Data Gaji";
-		$nik = $this->session->userdata('nik');
+		$id_pegawai = $this->session->userdata('id_pegawai');
 		$data['potongan'] = $this->ModelPenggajian->get_data('potongan_gaji')->result();
-		$data['gaji'] = $this->db->query("SELECT data_pegawai.nama_pegawai,data_pegawai.nik,
-			data_jabatan.tj_struktural,data_jabatan.tj_transport,data_jabatan.uang_makan,
-			data_kehadiran.alpha,data_kehadiran.bulan,data_kehadiran.id_kehadiran
-			FROM data_pegawai
-			INNER JOIN data_kehadiran ON data_kehadiran.nik = data_pegawai.nik
-			INNER JOIN data_jabatan ON data_jabatan.nama_jabatan = data_pegawai.jabatan
-			WHERE data_kehadiran.nik = '$nik'
-			ORDER BY data_kehadiran.bulan DESC")->result();
+		$data['gaji'] = $this->db->query("SELECT dp.nik,
+		dp.nama_pegawai,
+		dp.jenis_kelamin,
+		dp.honor,
+		dj.nama_jabatan,
+		dj.tj_struktural,
+		dj.insentif_mgmp,
+		dj.tunjangan_yayasan,
+		dj.tj_transport,
+		dj.uang_makan,
+		dk.hadir,
+		dk.piket,
+		dk.bulan,
+		dk.id_kehadiran,
+		rp.jumlah_potongan,
+		rp.total_jumlah_potongan,
+		pg.JenisPotongan,
+		tb.tugasTambahan
+	FROM 
+		data_pegawai dp
+	INNER JOIN 
+		data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
+	INNER JOIN 
+		data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
+	LEFT JOIN (
+		SELECT 
+			rp.id_pegawai,
+			COUNT(rp.id_potongan) AS jumlah_potongan,
+			SUM(pg.jml_potongan) AS total_jumlah_potongan
+		FROM 
+			rekap_potongan rp
+		INNER JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			rp.id_pegawai
+	) AS rp ON rp.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			rekap_potongan rp ON dp.id_pegawai = rp.id_pegawai
+		JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		WHERE 
+			dp.id_pegawai = '$id_pegawai'
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(tb.nama_tugas ORDER BY tb.id_tugas SEPARATOR ', ') AS tugasTambahan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			tugas_tambahan tb ON dp.id_pegawai = tb.id_pegawai
+		WHERE 
+			dp.id_pegawai = '$id_pegawai'
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS tb ON tb.id_pegawai = dp.id_pegawai
+	WHERE 
+		dp.id_pegawai = '$id_pegawai'
+	GROUP BY 
+		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai,tb.id_pegawai,pg.JenisPotongan
+			ORDER BY dk.bulan DESC")->result();
 
 		$this->load->view('template_pegawai/header', $data);
 		$this->load->view('template_pegawai/sidebar');
@@ -42,11 +104,61 @@ class Data_Gaji extends CI_Controller
 		$data['title'] = 'Cetak Slip Gaji';
 		$data['potongan'] = $this->ModelPenggajian->get_data('potongan_gaji')->result();
 
-		$data['print_slip'] = $this->db->query("SELECT data_pegawai.nik,data_pegawai.nama_pegawai,data_jabatan.nama_jabatan,data_jabatan.tj_struktural,data_jabatan.tj_transport,data_jabatan.uang_makan,data_kehadiran.alpha,data_kehadiran.bulan
-			FROM data_pegawai
-			INNER JOIN data_kehadiran ON data_kehadiran.nik=data_pegawai.nik
-			INNER JOIN data_jabatan ON data_jabatan.nama_jabatan=data_pegawai.jabatan
-			WHERE data_kehadiran.id_kehadiran = '$id'")->result();
+		$data['print_slip'] = $this->db->query("SELECT 
+		dp.nik,
+		dp.nama_pegawai,
+		dp.jenis_kelamin,
+		dp.honor,
+		dj.nama_jabatan,
+		dj.tj_struktural,
+		dj.insentif_mgmp,
+		dj.tunjangan_yayasan,
+		dj.tj_transport,
+		dj.uang_makan,
+		dk.hadir,
+		dk.bulan,
+		dk.piket,
+		rp.jumlah_potongan,
+		rp.total_jumlah_potongan,
+		pg.JenisPotongan
+	FROM 
+		data_pegawai dp
+	INNER JOIN 
+		data_kehadiran dk ON dk.id_pegawai = dp.id_pegawai
+	INNER JOIN 
+		data_jabatan dj ON dj.id_jabatan = dp.id_jabatan
+	LEFT JOIN (
+		SELECT 
+			rp.id_pegawai,
+			COUNT(rp.id_potongan) AS jumlah_potongan,
+			SUM(pg.jml_potongan) AS total_jumlah_potongan
+		FROM 
+			rekap_potongan rp
+		INNER JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			rp.id_pegawai
+	) AS rp ON rp.id_pegawai = dp.id_pegawai
+	LEFT JOIN (
+		SELECT 
+			dp.id_pegawai,
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+		FROM 
+			data_pegawai dp
+		JOIN 
+			rekap_potongan rp ON dp.id_pegawai = rp.id_pegawai
+		JOIN 
+			potongan_gaji pg ON rp.id_potongan = pg.id
+		GROUP BY 
+			dp.id_pegawai, dp.nama_pegawai
+	) AS pg ON pg.id_pegawai = dp.id_pegawai
+	WHERE 
+		dk.id_kehadiran = '$id'
+	GROUP BY 
+		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
+		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai, pg.JenisPotongan ;")->result();
+		// var_dump($data['print_slip']);
+		// die();
 		$this->load->view('template_pegawai/header', $data);
 		$this->load->view('pegawai/cetak_slip_gaji', $data);
 	}

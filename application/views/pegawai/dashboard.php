@@ -30,7 +30,7 @@
 	  			<tr>
 	  				<td>Jabatan</td>
 	  				<td>:</td>
-	  				<td><?php echo $p->jabatan?></td>
+	  				<td><?php echo $p->nama_jabatan?></td>
 	  			</tr>
 
 	  			<tr>

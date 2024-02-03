@@ -110,8 +110,8 @@ class Slip_Gaji extends CI_Controller
 		dp.nik, dp.nama_pegawai, dp.jenis_kelamin, dj.nama_jabatan, dj.tj_struktural, dj.insentif_mgmp,
 		dj.tunjangan_yayasan, dj.tj_transport, dj.uang_makan, dk.hadir, rp.id_pegawai,tb.id_pegawai,pg.JenisPotongan;
 	")->result();
-		var_dump($data['print_slip']);
-		die();
+		// var_dump($data['print_slip']);
+		// die();
 		// $data['bulan'] = $bulan;
 		// $data['tahun'] = $tahun;
 

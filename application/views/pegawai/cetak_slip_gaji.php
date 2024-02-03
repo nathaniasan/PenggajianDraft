@@ -13,10 +13,11 @@
 	</style>
 </head>
 
+
 <body>
 	<center>
-		<h1>PT. Multimedia Adiautama Asia</h1>
-		<h2>Daftar Gaji Pegawai</h2>
+		<h1>SMA YP UNILA</h1>
+		<h2>Daftar Gaji Guru dan S</h2>
 		<hr style="width: 50%; border-width: 5px; color: black">
 	</center>
 
@@ -27,7 +28,7 @@
 
 	<?php foreach ($print_slip as $ps): ?>
 
-		<?php $potongan_gaji = $ps->alpha * $potongan; ?>
+		<?php $potongan_gaji = $ps->hadir * $potongan; ?>
 
 		<table style="width: 100%">
 			<tr>
@@ -91,11 +92,26 @@
 
 			<tr>
 				<td>3</td>
-				<td>Uang Makan</td>
+				<td>Tj. Staff</td>
 				<td>Rp.
 					<?php echo number_format($ps->uang_makan, 0, ',', '.') ?>
 				</td>
 			</tr>
+			<tr>
+				<td>3</td>
+				<td>Insentif MGMP</td>
+				<td>Rp.
+					<?php echo number_format($ps->insentif_mgmp, 0, ',', '.') ?>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Tunjangan Yayasan</td>
+				<td>Rp.
+					<?php echo number_format($ps->tunjangan_yayasan, 0, ',', '.') ?>
+				</td>
+			</tr>
+
 
 			<tr>
 				<td>4</td>
@@ -127,11 +143,11 @@
 
 				<td width="200px">
 					<p>Bandar Lampung,
-						<?php echo date("d M Y") ?> <br> Bendahara,
+						<?php echo date("d M Y") ?> <br> Finance,
 					</p>
 					<br>
 					<br>
-					<p>___________________</p>
+					<p>_______________________________</p>
 				</td>
 			</tr>
 		</table>
@@ -139,6 +155,7 @@
 	<?php endforeach; ?>
 
 </body>
+
 
 </html>
 

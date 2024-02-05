@@ -79,12 +79,14 @@ class Potongan_Gaji extends CI_Controller
 		$potongan = $this->input->post('potongan_lama');
 		$this->db->where('potongan', $potongan);
 		$this->db->update('potongan_gaji', $data);
+		redirect('admin/potongan_gaji/tampilPotongan');
 	}
 	function hapusPotongan()
 	{
 		$potongan = $this->input->post('potongan');
 
 		$this->db->delete('potongan_gaji', array('potongan' => $potongan));
+		redirect('admin/potongan_gaji/tampilPotongan');
 	}
 }
 ?>

@@ -23,7 +23,14 @@
 				data: data,
 				cache: false,
 				success: function (data) {
-					$('#tampil').load("<?php echo base_url(); ?>admin/potongan_gaji/tampilPotongan");
+					// $('#tampil').load("<?php echo base_url(); ?>admin/potongan_gaji/tampilPotongan");
+					var flashMessage = '<?php echo $this->session->flashdata("success_message"); ?>';
+					if (flashMessage) {
+						// Display the success alert
+						$('#flash-message-container').html(flashMessage);
+						// You can add additional styling or animation here if needed
+					}
+					window.location.href = "<?php echo base_url(); ?>admin/potongan_gaji";
 				}
 			});
 		});

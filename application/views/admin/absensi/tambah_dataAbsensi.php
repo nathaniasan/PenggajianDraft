@@ -70,49 +70,76 @@
 			<?php echo $tahun ?>
 		</span>
 	</div>
-	<form method="POST">
-		<button class="btn btn-success mb-3" type="submit" name="submit" value="submit">Simpan Perubahan</button>
-		<table class="table table-bordered table-striped">
-			<tr>
-				<td class="text-center">No</td>
-				<td class="text-center">NIK</td>
-				<td class="text-center">Nama Pegawai</td>
-				<td class="text-center">Jenis Kelamin</td>
-				<td class="text-center">Jabatan</td>
-				<td class="text-center" width="8%">Hadir</td>
-				<td class="text-center" width="8%">Sakit</td>
-				<td class="text-center" width="8%">Alpha</td>
-				<td class="text-center" width="8%">Piket</td>
-			</tr>
-			<?php $no = 1;
-			foreach ($input_absensi as $a): ?>
-				<tr>
-					<input type="hidden" name="bulan[]" class="form-control" value="<?php echo $bulantahun ?>">
-					<input type="hidden" name="id_pegawai[]" class="form-control" value="<?php echo $a->id_pegawai ?>">
 
 
-					<td>
-						<?php echo $no++ ?>
-					</td>
-					<td>
-						<?php echo $a->nik ?>
-					</td>
-					<td>
-						<?php echo $a->nama_pegawai ?>
-					</td>
-					<td>
-						<?php echo $a->jenis_kelamin ?>
-					</td>
-					<td>
-						<?php echo $a->nama_jabatan ?>
-					</td>
-					<td><input type="number" name="hadir[]" class="form-control" value="0"></td>
-					<td><input type="number" name="sakit[]" class="form-control" value="0"></td>
-					<td><input type="number" name="alpha[]" class="form-control" value="0"></td>
-					<td><input type="number" name="piket[]" class="form-control" value="0"></td>
-				<?php endforeach; ?>
-		</table><br></br><br></br>
-	</form>
+	<div class="card shadow mb-4">
+		<div class="card-body">
+			<div class="table-responsive">
+				<form method="POST">
+					<button class="btn btn-success mb-3" type="submit" name="submit" value="submit">Simpan
+						Perubahan</button>
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<tr>
+							<td class="text-center">No</td>
+							<td class="text-center">NIK</td>
+							<td class="text-center">Nama Pegawai</td>
+							<td class="text-center">Jenis Kelamin</td>
+							<td class="text-center">Jabatan</td>
+							<td class="text-center" width="8%">Hadir</td>
+							<td class="text-center" width="8%">Sakit</td>
+							<td class="text-center" width="8%">Alpha</td>
+							<td class="text-center" width="8%">Piket</td>
+						</tr>
+						<?php $no = 1;
+						foreach ($input_absensi as $a): ?>
+							<tr>
+								<input type="hidden" name="bulan[]" class="form-control" value="<?php echo $bulantahun ?>">
+								<input type="hidden" name="id_pegawai[]" class="form-control"
+									value="<?php echo $a->id_pegawai ?>">
+
+
+								<td>
+									<?php echo $no++ ?>
+								</td>
+								<td>
+									<?php echo $a->nik ?>
+								</td>
+								<td>
+									<?php echo $a->nama_pegawai ?>
+								</td>
+								<td>
+									<?php echo $a->jenis_kelamin ?>
+								</td>
+								<td>
+									<?php echo $a->nama_jabatan ?>
+								</td>
+								<td><input type="number" name="hadir[]" class="form-control" value="0"></td>
+								<td><input type="number" name="sakit[]" class="form-control" value="0"></td>
+								<td><input type="number" name="alpha[]" class="form-control" value="0"></td>
+								<td><input type="number" name="piket[]" class="form-control" value="0"></td>
+							<?php endforeach; ?>
+					</table><br></br><br></br>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#dataTable').DataTable();
+	});
+
+	$('#dataTable').DataTable({
+		"search": {
+			"search": "input[type='search']", // Use a custom input for search
+		}
+	});
+	$('#dataTable').DataTable({
+		columnDefs: [
+			{ targets: 2, visible: false } // Hide the third column
+		]
+	});
+
+</script>
 <!-- /.container-fluid -->

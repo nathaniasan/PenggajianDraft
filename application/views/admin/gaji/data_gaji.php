@@ -115,6 +115,7 @@ if ($jml_data > 0) { ?>
 								<th class="text-center">Tj Piket</th>
 								<th class="text-center">Honor Pokok</th>
 								<th class="text-center">Jam Kehadiran</th>
+								<th class="text-center">Jenis Potongan</th>
 								<th class="text-center">Jumlah Potongan Gaji</th>
 								<th class="text-center">Total Gaji</th>
 							</tr>
@@ -176,6 +177,9 @@ if ($jml_data > 0) { ?>
 
 									<td class="text-center">
 										<?php echo $g->hadir ?>
+									</td>
+									<td class="text-center">
+										<?php echo $g->JenisPotongan ?>
 									</td>
 
 									<td class="text-center">Rp.

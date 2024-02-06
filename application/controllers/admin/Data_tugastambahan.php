@@ -68,18 +68,21 @@ RIGHT JOIN
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->tambah_data();
-		} else {
-
-			$nama_tugas = $this->input->post('nama_tugas');
-			$id_pegawai = $this->input->post('id_pegawai');
-			// $id_jabatan = md5($this->input->post('id_jabatan'));
 		}
+		$id_tugas = $this->input->post('id_tugas');
+		$nama_tugas = $this->input->post('nama_tugas');
+		$id_pegawai = $this->input->post('id_pegawai');
+		$honor_tugas = $this->input->post('honor_tugas');
+
+
 
 		$data = array(
+			'id_tugas' => $id_tugas,
 			'nama_tugas' => $nama_tugas,
 			'id_pegawai' => $id_pegawai,
-			// 'id_jabatan' => $id_jabatan,
+			'honor_tugas' => $honor_tugas,
 		);
+
 
 		$this->ModelTugas_Tambahan->addTugas($data);
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -118,6 +121,7 @@ RIGHT JOIN
 			$id_tugas = $this->input->post('id_tugas');
 			$nama_tugas = $this->input->post('nama_tugas');
 			$id_pegawai = $this->input->post('id_pegawai');
+			$honor_tugas = $this->input->post('honor_tugas');
 
 
 
@@ -125,8 +129,7 @@ RIGHT JOIN
 				'id_tugas' => $id_tugas,
 				'nama_tugas' => $nama_tugas,
 				'id_pegawai' => $id_pegawai,
-
-
+				'honor_tugas' => $honor_tugas,
 			);
 
 			$where = array(

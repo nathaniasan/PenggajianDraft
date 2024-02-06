@@ -139,6 +139,13 @@
 			</tr>
 			<tr>
 				<td>9</td>
+				<td>Tugas Tambahan</td>
+				<td>
+					<?php echo $ps->tugasTambahan; ?>
+				</td>
+			</tr>
+			<tr>
+				<td>9</td>
 				<td>Rincian Jenis Potongan</td>
 				<td>
 

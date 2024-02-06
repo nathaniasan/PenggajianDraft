@@ -21,6 +21,11 @@
 				<input type="text" name="nama_tugas" class="form-control">
 				<?php echo form_error('nama_tugas', '<div class="text-small text-danger"> </div>') ?>
 			</div>
+			<div class="form-group">
+				<label>Honor Tugas</label>
+				<input type="text" name="honor_tugas" class="form-control">
+				<?php echo form_error('honor_tugas', '<div class="text-small text-danger"> </div>') ?>
+			</div>
 
 			<div class="form-group">
 				<label>Nama Pegawai</label>

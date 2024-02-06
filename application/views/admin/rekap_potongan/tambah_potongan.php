@@ -24,11 +24,6 @@
 		</select>
 	</div>
 
-
-	<div class="form-group">
-		<label for="email">Jumlah</label>
-		<input type="text" class="form-control" name="jml_potongan" placeholder="Masukan Jumlah Potongan">
-	</div>
 	<button id="tombol_tambah" type="button" class="btn btn-primary" data-dismiss="modal"
 		data-redirect="<?php echo base_url(); ?>admin/potongan_gaji/tampilPotongan">Simpan</button>
 
@@ -43,11 +38,11 @@
 			cache: false,
 			success: function (data) {
 				var flashMessage = '<?php echo $this->session->flashdata("success_message"); ?>';
-                if (flashMessage) {
-                    // Display the success alert
-                    $('#flash-message-container').html(flashMessage);
-                    // You can add additional styling or animation here if needed
-                }
+				if (flashMessage) {
+					// Display the success alert
+					$('#flash-message-container').html(flashMessage);
+					// You can add additional styling or animation here if needed
+				}
 				window.location.href = "<?php echo base_url(); ?>admin/rekap_potongan/";
 			}
 		});

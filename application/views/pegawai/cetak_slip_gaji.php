@@ -21,14 +21,20 @@
 		<hr style="width: 50%; border-width: 5px; color: black">
 	</center>
 
-	<?php foreach ($potongan as $p) {
+	<?php
+	$no = 1;
+	foreach ($potongan as $p) {
 		$potongan = $p->jml_potongan;
 	} ?>
 
 
 	<?php foreach ($print_slip as $ps): ?>
 
-		<?php $potongan_gaji = $ps->hadir * $potongan; ?>
+
+		<?php $honor_pokok = $ps->hadir * $ps->honor;
+
+		$tj_piket = 80000 * $ps->piket;
+		?>
 
 		<table style="width: 100%">
 			<tr>
@@ -76,6 +82,13 @@
 			</tr>
 			<tr>
 				<td>1</td>
+				<td>Honor Pokok</td>
+				<td>Rp.
+					<?php echo number_format($honor_pokok, 0, ',', '.') ?>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
 				<td>Tj Struktural</td>
 				<td>Rp.
 					<?php echo number_format($ps->tj_struktural, 0, ',', '.') ?>
@@ -83,7 +96,7 @@
 			</tr>
 
 			<tr>
-				<td>2</td>
+				<td>3</td>
 				<td>Tunjangan Transportasi</td>
 				<td>Rp.
 					<?php echo number_format($ps->tj_transport, 0, ',', '.') ?>
@@ -91,40 +104,82 @@
 			</tr>
 
 			<tr>
-				<td>3</td>
+				<td>4</td>
 				<td>Tj. Staff</td>
 				<td>Rp.
 					<?php echo number_format($ps->uang_makan, 0, ',', '.') ?>
 				</td>
 			</tr>
 			<tr>
-				<td>3</td>
+				<td>5</td>
 				<td>Insentif MGMP</td>
 				<td>Rp.
 					<?php echo number_format($ps->insentif_mgmp, 0, ',', '.') ?>
 				</td>
 			</tr>
 			<tr>
-				<td>3</td>
+				<td>6</td>
 				<td>Tunjangan Yayasan</td>
 				<td>Rp.
 					<?php echo number_format($ps->tunjangan_yayasan, 0, ',', '.') ?>
 				</td>
 			</tr>
+			<tr>
+				<td>7</td>
+				<td>Tunjangan Yayasan</td>
+				<td>Rp.
+					<?php echo number_format($ps->tunjangan_yayasan, 0, ',', '.') ?>
+				</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>Piket</td>
+				<td>Rp.
+					<?php echo number_format($tj_piket, 0, ',', '.') ?>
+				</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>Rincian Jenis Potongan</td>
+				<td>
 
+				</td>
+			</tr>
 
 			<tr>
-				<td>4</td>
-				<td>Potongan</td>
+				<td></td>
+				<td>
+					<?php $jenis = $ps->JenisPotongan;
+					$jenis_potongan = explode(',', $jenis);
+					foreach ($jenis_potongan as $jp) {
+
+						echo '<p>' . $jp . '</p>';
+
+					} ?>
+				</td>
+				<td>
+					<?php
+					$result = $ps->besarPotongan;
+					$potonganArray = explode(', ', $result);
+					foreach ($potonganArray as $potongan) {
+						echo '<p>' . $potongan . '</p>';
+					}
+					?>
+
+				</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>Total Potongan</td>
 				<td>Rp.
-					<?php echo number_format($potongan_gaji, 0, ',', '.') ?>
+					<?php echo number_format($ps->total_jumlah_potongan, 0, ',', '.') ?>
 				</td>
 			</tr>
 
 			<tr>
 				<th colspan="2" style="text-align: right;">Total Gaji : </th>
 				<th>Rp.
-					<?php echo number_format($ps->tj_struktural + $ps->tj_transport + $ps->uang_makan - $potongan_gaji, 0, ',', '.') ?>
+					<?php echo number_format($ps->tj_struktural + $ps->tj_transport + $ps->uang_makan + $tj_piket + $honor_pokok - $ps->total_jumlah_potongan, 0, ',', '.') ?>
 				</th>
 			</tr>
 		</table>
@@ -143,7 +198,7 @@
 
 				<td width="200px">
 					<p>Bandar Lampung,
-						<?php echo date("d M Y") ?> <br> Finance,
+						<?php echo date("d M Y") ?> <br> Bendahara,
 					</p>
 					<br>
 					<br>
@@ -155,6 +210,7 @@
 	<?php endforeach; ?>
 
 </body>
+
 
 
 </html>

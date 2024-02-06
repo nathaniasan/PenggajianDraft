@@ -120,7 +120,8 @@ class Data_Gaji extends CI_Controller
 		dk.piket,
 		rp.jumlah_potongan,
 		rp.total_jumlah_potongan,
-		pg.JenisPotongan
+		pg.JenisPotongan,
+		pg.besarPotongan
 	FROM 
 		data_pegawai dp
 	INNER JOIN 
@@ -142,7 +143,10 @@ class Data_Gaji extends CI_Controller
 	LEFT JOIN (
 		SELECT 
 			dp.id_pegawai,
-			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan
+			GROUP_CONCAT(pg.potongan ORDER BY pg.id SEPARATOR ', ') AS JenisPotongan,
+			GROUP_CONCAT(
+  CONCAT('Rp. ', FORMAT(CAST(SUBSTRING_INDEX(pg.jml_potongan, '.', 1) AS SIGNED), 0)) 
+  ORDER BY pg.id SEPARATOR ', ') AS besarPotongan
 		FROM 
 			data_pegawai dp
 		JOIN 

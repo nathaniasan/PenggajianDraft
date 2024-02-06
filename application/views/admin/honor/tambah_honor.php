@@ -11,7 +11,7 @@
 </div>
 <!-- /.container-fluid -->
 
-<div class="card" style="width: 60% ; margin-bottom: 100px">
+<div class="card" style="width: 60% ;  margin: 20px 30px 100px 20px;">
 	<div class="card-body">
 		<form method="POST" action="<?php echo base_url('admin/honor/tambah_honor_aksi') ?>"
 			enctype="multipart/form-data">

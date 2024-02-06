@@ -1,0 +1,136 @@
+INSERT INTO `data_pegawai` (`id_pegawai`, `nik`, `nama_pegawai`, `username`, `password`, `jenis_kelamin`, `tanggal_masuk`, `status`, `photo`, `honor`, `id_jabatan`, `hak_akses`) VALUES 
+(NULL, '18484839', 'IRMAYANI K, S.Pd.', 'irmayani01', MD5('123'), 'Perempuan', '2000-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2000-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2000-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2000-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2000-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2000-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2000-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+-- (ulangi pola ini untuk setiap pegawai dengan data yang sesuai)
+
+(NULL, '18484840', 'TUGIANI, S.Pd.', 'tugiani01', MD5('123'), 'Perempuan', '2002-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2002-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2002-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2002-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2002-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2002-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2002-07-01') = 4 THEN 95000
+    END, '8', '2'),
+(NULL, '18484841', 'ISMITA DEWI, S.Pd.', 'ismita01', MD5('123'), 'Perempuan', '2005-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2005-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2005-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2005-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2005-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2005-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2005-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+(NULL, '18484842', 'SELVIA, S.Pd.', 'selvia01', MD5('123'), 'Perempuan', '2006-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2006-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+-- (ulangi pola ini untuk setiap pegawai dengan data yang sesuai)
+
+(NULL, '18484843', 'EKA APIA SANDRA, S.Pd.', 'ekaapia01', MD5('123'), 'Perempuan', '2006-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2006-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+(NULL, '18484844', 'SITI RAHMAH, S.Pd.', 'siti01', MD5('123'), 'Perempuan', '2006-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2006-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+(NULL, '18484845', 'DIEN ANGGALIA, S.Pd., M.Pd.', 'diengalia01', MD5('123'), 'Perempuan', '2006-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2006-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2006-07-01') = 4 THEN 95000
+    END, '17', '2'),
+
+-- (ulangi pola ini untuk setiap pegawai dengan data yang sesuai)
+
+(NULL, '18484846', 'SITI MASRUROH, S.Ag.', 'siti02', MD5('123'), 'Perempuan', '2008-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2008-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+(NULL, '18484847', 'ZAINI ZEN, S.Pd.I.', 'zaini01', MD5('123'), 'Laki-laki', '2008-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2008-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2008-07-01') = 4 THEN 95000
+    END, '17', '2'),
+
+(NULL, '18484848', 'NURUL ILMI KURNIATI, S.Pd.', 'nurulilmi01', MD5('123'), 'Perempuan', '2009-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2009-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 4 THEN 95000
+    END, '1', '2'),
+
+-- (ulangi pola ini untuk setiap pegawai dengan data yang sesuai)
+
+(NULL, '18484849', 'FAIRUZA, S.Kom.', 'fairuza01', MD5('123'), 'Perempuan', '2009-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2009-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2009-07-01') = 4 THEN 95000
+    END, '8', '2'),
+(NULL, '18484850', 'YULIANTINA, S.E.', 'yuliantina01', MD5('123'), 'Perempuan', '2010-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2010-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 4 THEN 95000
+    END, '8', '2'),
+
+(NULL, '18484851', 'YAHYA HUSEIN, S.Kom.', 'yahya01', MD5('123'), 'Laki-laki', '2010-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2010-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2010-07-01') = 4 THEN 95000
+    END, '1', '2'),
+
+-- (ulangi pola ini untuk setiap pegawai dengan data yang sesuai)
+
+(NULL, '18484852', 'EMELDA MARZUKI, S.Pd.', 'emelda01', MD5('123'), 'Perempuan', '2011-07-01', 'Guru', '-', 
+    CASE WHEN DATEDIFF(CURDATE(), '2011-07-01') >= 5 THEN 100000
+         WHEN DATEDIFF(CURDATE(), '2011-07-01') = 0 THEN 70000
+         WHEN DATEDIFF(CURDATE(), '2011-07-01') = 1 THEN 80000
+         WHEN DATEDIFF(CURDATE(), '2011-07-01') = 2 THEN 85000
+         WHEN DATEDIFF(CURDATE(), '2011-07-01') = 3 THEN 90000
+         WHEN DATEDIFF(CURDATE(), '2011-07-01') = 4 THEN 95000
+    END, '8', '2');
+
+    
